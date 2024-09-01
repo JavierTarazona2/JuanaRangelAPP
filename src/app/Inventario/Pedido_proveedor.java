@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package app.Inventario;
 
 import app.Inicio.Incio;
@@ -10,6 +6,7 @@ import app.datos.*;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,6 +19,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
     private final DefaultTableModel modelo;
     private final balance_cbd bcdb = new balance_cbd();
     private final balance balance = new balance();
+    private Boolean verificar;
     private proveedor_pedido pe = new proveedor_pedido();
 
     /**
@@ -30,6 +28,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
      * 
      * @param inicio Referencia al objeto Incio
      */
+    
     public Pedido_proveedor(Incio inicio) {
         this.inicio = inicio;
         initComponents();
@@ -44,6 +43,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
      * @param inicio Referencia al objeto Incio
      * @param sdds Objeto proveedor_pedido a mostrar en el panel
      */
+    
     public Pedido_proveedor(Incio inicio, proveedor_pedido sdds) {
         this.inicio = inicio;
         this.pe = sdds;
@@ -51,13 +51,16 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
         modelo = (DefaultTableModel) txtProductos.getModel();
         mostrarProveedor(sdds);
         configurarEstadoEntrega(sdds.getEstado());
+        verificar = sdds.getEstado();
     }
 
+    
     /**
      * Configura el estado de entrega en base al estado proporcionado.
      * 
      * @param estado Estado de entrega del pedido
      */
+    
     private void configurarEstadoEntrega(Boolean estado) {
         if (estado.equals(Boolean.TRUE)) {
             entregado.setSelected(true);
@@ -98,29 +101,46 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(800, 650));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setText("Pedido Realizado");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Elegir proveedor a cargo del pedido:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, 28));
 
         txtproveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtproveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txtproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 261, 30));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Productos por codigo o por nombre:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, 28));
 
         txtnombre.setText("nombre");
+        txtnombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 260, 30));
 
+        jButton1.setBackground(new java.awt.Color(177, 11, 11));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Agregar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 153, 90, 30));
 
+        txtProductos.setBackground(new java.awt.Color(245, 22, 22));
         txtProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -140,117 +160,57 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(txtProductos);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 750, 260));
+
+        jButton2.setBackground(new java.awt.Color(177, 11, 11));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Crear pedido");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 580, 110, 40));
 
+        jButton3.setBackground(new java.awt.Color(177, 11, 11));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("descartar");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 580, 110, 40));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Que cantidad desea del producto:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, 28));
 
         txtcantidad.setText("cantidad");
+        txtcantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txtcantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 152, 260, 30));
 
         txtcodigo.setText("codigo");
+        txtcodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 190, 30));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel5.setText("Fecha de entrega del pedido");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Fecha de entrega del pedido:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 28));
 
         txtfehaEntrega.setText("YYYY-MM-DD");
+        txtfehaEntrega.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txtfehaEntrega, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 260, 30));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel6.setText("Codigo de la factura");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Codigo de la factura:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, 28));
 
         txtcodigof.setText("Codigo factura");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(283, 283, 283))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel6))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtcodigof, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtfehaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jButton1))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(149, 149, 149))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfehaEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcodigof, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(18, 18, 18))
-        );
+        txtcodigof.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txtcodigof, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 370, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -502,83 +462,12 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
     );
 }
 // </editor-fold>  
-    
-   private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {                                            
-    // Actualiza la fecha de entrega si ha cambiado
-    if (!pe.getFecha_entrega().equals(LocalDate.parse(txtfehaEntregaE.getText()))) {
-        pe.setFecha_entrega(LocalDate.parse(txtfehaEntregaE.getText()));
-    }
-    
-    // Actualiza el valor total si ha cambiado
-    if (pe.getValor_total() != Double.parseDouble(ValorE.getText())) {
-        pe.setValor_total(Double.parseDouble(ValorE.getText()));
-    }
-    
-    // Actualiza el estado del pedido según el estado del checkbox
-    pe.setEstado(entregado.isSelected() ? Boolean.TRUE : Boolean.FALSE);
-    
-    // Guarda los cambios en la base de datos
-    prcdb.actualizarPedido(pe);
-    
-    // Muestra el panel de inventario después de actualizar
-    inicio.mostrar(new inventario(inicio));  
-}                                        
-
-    private void BEliminarActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // Obtener el índice de la fila seleccionada
-        int filaSeleccionada = txtProductos.getSelectedRow();
-
-        if (filaSeleccionada != -1) { // Verifica si se ha seleccionado una fila
-            // Obtener el código del producto desde la tabla
-            String codigoProducto = (String) txtProductos.getValueAt(filaSeleccionada, 1);
-
-            // Buscar el producto en la lista de productos y eliminarlo
-            for (int i = 0; i < pe.getProductos().size(); i++) {
-                producto p = pe.getProductos().get(i);
-                if (p.getCodigo().equals(codigoProducto)) {
-                    // Eliminar el producto y la cantidad asociada
-                    pe.getProductos().remove(i);
-                    pe.getCantidades().remove(i);
-                    break;
-                }
-            }
-
-            // Actualizar la tabla con los productos restantes
-            refrescarTablaProductos(pe.getProductos(), pe.getCantidades());
-
-            // Actualizar el valor total del pedido después de eliminar productos
-            double nuevoValorTotal = calcularNuevoValorTotal();
-            ValorE.setText(String.valueOf(nuevoValorTotal));
-
-            // Actualizar el objeto pedido en la base de datos (opcional)
-            // prcdb.actualizarPedido(pe); 
-        } else {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto para eliminar.", "Error", JOptionPane.WARNING_MESSAGE);
-        }
-    }
-
-    // Método para calcular el nuevo valor total del pedido
-    private double calcularNuevoValorTotal() {
-        double nuevoValorTotal = 0.0;
-        for (int i = 0; i < pe.getProductos().size(); i++) {
-            producto p = pe.getProductos().get(i);
-            int cantidad = pe.getCantidades().get(i);
-            nuevoValorTotal += p.getPrecio_entrada() * cantidad; // Suponiendo que producto tiene un método getPrecio_entrada()
-        }
-        return nuevoValorTotal;
-    }
-
-    private void BVolverActionPerformed(ActionEvent evt) {
-        // Muestra el panel de inventario al hacer clic en "Volver"
-        inicio.mostrar(new inventario(inicio));     
-    }
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         inicio.mostrar(new inventario(inicio));
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
+           try {
             // Validar que todos los campos necesarios estén completos y sean válidos
             validarCamposPedido();
 
@@ -600,12 +489,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
             // Registrar el pedido en la base de datos
             prcdb.RegistrarPedidos(pe);
 
-            // Detallar el pedido en el balance
-            balance.setDetalles("Pedido Realizado a " + pe.getproveedor().getNombre());
-            balance.setFecha(LocalDate.now());
-            balance.setTipo("Gasto");
-            balance.setValor(pe.getValor_total());
-            bcdb.registrarBalance(balance);
+            
 
             // Mostrar el panel de inventario
             inicio.mostrar(new inventario(inicio));
@@ -615,9 +499,9 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // Validar que los campos de producto estén completos y sean válidos
@@ -643,43 +527,119 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-    // Método para refrescar la tabla de productos agregados en el pedido
+        
+    
+   private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    // Validar campos y actualizar el objeto pedido
+    actualizarPedido();
+    
+    // Guardar los cambios en la base de datos
+    prcdb.actualizarPedido(pe);
+    
+    // Muestra el panel de inventario después de actualizar
+    inicio.mostrar(new inventario(inicio));  
+    }  
+
+   
+    private void actualizarPedido() {
+        // Actualiza la fecha de entrega si ha cambiado
+        LocalDate nuevaFechaEntrega = LocalDate.parse(txtfehaEntregaE.getText());
+        if (!pe.getFecha_entrega().equals(nuevaFechaEntrega)) {
+            pe.setFecha_entrega(nuevaFechaEntrega);
+        }
+
+        // Actualiza el valor total si ha cambiado
+        double nuevoValorTotal = Double.parseDouble(ValorE.getText());
+        if (!Objects.equals(pe.getValor_total(), nuevoValorTotal)) {
+            pe.setValor_total(nuevoValorTotal);
+        }
+
+        // Actualiza el estado del pedido según el estado del checkbox
+        pe.setEstado(entregado.isSelected());
+        verificarEstado();
+    }       
+
+    
+    private void BEliminarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    int filaSeleccionada = txtProductos.getSelectedRow();
+
+    if (filaSeleccionada != -1) {
+        eliminarProducto(filaSeleccionada);
+        refrescarTablaProductos(pe.getProductos(), pe.getCantidades());
+        ValorE.setText(String.valueOf(calcularNuevoValorTotal()));
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto para eliminar.", "Error", JOptionPane.WARNING_MESSAGE);
+    }
+    }
+
+    
+    private void eliminarProducto(int filaSeleccionada) {
+        String codigoProducto = (String) txtProductos.getValueAt(filaSeleccionada, 1);
+
+        for (int i = 0; i < pe.getProductos().size(); i++) {
+            producto p = pe.getProductos().get(i);
+            if (p.getCodigo().equals(codigoProducto)) {
+                pe.getProductos().remove(i);
+                pe.getCantidades().remove(i);
+                break;
+            }
+        }
+    }
+
+
+    // Método para calcular el nuevo valor total del pedido
+    private double calcularNuevoValorTotal() {
+        double nuevoValorTotal = 0.0;
+        for (int i = 0; i < pe.getProductos().size(); i++) {
+            producto p = pe.getProductos().get(i);
+            int cantidad = pe.getCantidades().get(i);
+            nuevoValorTotal += p.getPrecio_entrada() * cantidad; // Suponiendo que producto tiene un método getPrecio_entrada()
+        }
+        return nuevoValorTotal;
+    }
+
+    
+    private void BVolverActionPerformed(ActionEvent evt) {
+        // Muestra el panel de inventario al hacer clic en "Volver"
+        inicio.mostrar(new inventario(inicio));     
+    }
+// Método para refrescar la tabla de productos agregados en el pedido
+   
     public void refrescarTablaProductos(ArrayList<producto> productos, ArrayList<Integer> cantidades) {
-        modelo.setRowCount(0); // Limpia la tabla antes de actualizarla
+    modelo.setRowCount(0); // Limpia la tabla antes de actualizarla
 
-        if (productos.size() == cantidades.size()) {
-            // Recorrer los productos y agregar cada uno a la tabla
-            for (int i = 0; i < productos.size(); i++) {
-                producto p = productos.get(i);
-                Object[] fila = {
-                    i + 1, // Índice de la fila
-                    p.getCodigo(),
-                    p.getNombre(),
-                    cantidades.get(i)
-                };
-                modelo.addRow(fila);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No es la misma cantidad de productos que de cantidades", "Error", JOptionPane.ERROR_MESSAGE);
+    if (productos.size() == cantidades.size()) {
+        for (int i = 0; i < productos.size(); i++) {
+            producto p = productos.get(i);
+            Object[] fila = {
+                i + 1, // Índice de la fila
+                p.getCodigo(),
+                p.getNombre(),
+                cantidades.get(i)
+            };
+            modelo.addRow(fila);
         }
+    } else {
+        JOptionPane.showMessageDialog(this, "La cantidad de productos y cantidades no coincide.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+    }
+
+    
+    
     // Método para actualizar la lista de proveedores en el JComboBox
+    
     public void actualizarProveedores() {
-        try {
-            ArrayList<proveedor> listaProveedores = prcdb.ListadoProveedores();
-
-            // Limpiar el contenido actual del JComboBox
-            txtproveedor.removeAllItems();
-
-            // Agregar cada nombre de proveedor al JComboBox
-            for (proveedor p : listaProveedores) {
-                txtproveedor.addItem(p.getNombre());
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(inicio, "Error al actualizar los proveedores: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    try {
+        ArrayList<proveedor> listaProveedores = prcdb.ListadoProveedores();
+        txtproveedor.removeAllItems();
+        for (proveedor p : listaProveedores) {
+            txtproveedor.addItem(p.getNombre());
         }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al actualizar los proveedores: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
+    }
+
 
     // Método para validar que todos los campos de un pedido estén completos
     private void validarCamposPedido() {
@@ -722,8 +682,28 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
        
        refrescarTablaProductos(prrr.getProductos(),prrr.getCantidades());
     }
-
-     private javax.swing.JButton BActualizar;
+    private void verificarEstado(){
+        if(verificar.equals(false)){
+            // Detallar el pedido en el balance
+            balance.setDetalles("Pedido Realizado a " + pe.getproveedor().getNombre());
+            balance.setFecha(LocalDate.now());
+            balance.setTipo("Gasto");
+            balance.setValor(pe.getValor_total());
+            bcdb.registrarBalance(balance);
+            Integer i = 0;
+            
+           
+            for(producto pp : pe.getProductos()){
+                pp = pcdb.buscarProductoPorId(pcdb.obtenerIdProducto(pp.getCodigo()));
+                Integer cantidad =  pp.getCantidad() + pe.getCantidades().get(i);
+                pp.setCantidad(cantidad);
+                pcdb.ActualizarProducto( pp);
+                i++;
+            }
+        }
+    }
+    
+    private javax.swing.JButton BActualizar;
     private javax.swing.JButton BEliminar;
     private javax.swing.JButton BVolver;
     private javax.swing.JTextField ValorE;
@@ -737,7 +717,6 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
     private javax.swing.JTextField txtcodigoF;
     private javax.swing.JTextField txtfehaEntregaE;
     private javax.swing.JTextField txtfeharealizado;
-    // End of variables declaration  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

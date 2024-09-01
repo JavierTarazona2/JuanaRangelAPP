@@ -23,7 +23,7 @@ public class Incio extends javax.swing.JFrame {
         initComponents(); // Inicializa los componentes gráficos.
         actualizarFecha(mensaje); // Actualiza la etiqueta con la fecha actual.
         this.setVisible(true); // Hace visible la ventana.
-        mostrar(new principal()); // Muestra el panel principal al iniciar la aplicación.
+        mostrar(new principal(this)); // Muestra el panel principal al iniciar la aplicación.
     }
 
 
@@ -39,13 +39,16 @@ public class Incio extends javax.swing.JFrame {
         fondo = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         titulo2 = new javax.swing.JLabel();
         icono = new javax.swing.JLabel();
         inicio = new javax.swing.JButton();
         Venta = new javax.swing.JButton();
         balance = new javax.swing.JButton();
         inventario = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         bienvenida = new javax.swing.JPanel();
         mensaje = new javax.swing.JLabel();
         contenido = new javax.swing.JPanel();
@@ -58,28 +61,25 @@ public class Incio extends javax.swing.JFrame {
         fondo.setBackground(new java.awt.Color(0, 0, 0));
         fondo.setMaximumSize(new java.awt.Dimension(1032767, 1032767));
         fondo.setMinimumSize(new java.awt.Dimension(1050, 750));
+        fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         menu.setBackground(new java.awt.Color(182, 11, 11));
         menu.setMinimumSize(new java.awt.Dimension(250, 750));
         menu.setPreferredSize(new java.awt.Dimension(250, 750));
 
-        titulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        titulo.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         titulo.setForeground(new java.awt.Color(255, 255, 255));
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("Juana Rangel");
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-
-        titulo2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        titulo2.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         titulo2.setForeground(new java.awt.Color(255, 255, 255));
         titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo2.setText("Panaderia");
 
         icono.setForeground(new java.awt.Color(255, 255, 255));
         icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icono.setText("icono");
-        icono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Captura_de_pantalla_2024-08-31_163508-removebg-preview.png"))); // NOI18N
 
         inicio.setBackground(new java.awt.Color(182, 11, 11));
         inicio.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -87,6 +87,7 @@ public class Incio extends javax.swing.JFrame {
         inicio.setText("Inicio");
         inicio.setBorder(null);
         inicio.setContentAreaFilled(false);
+        inicio.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         inicio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         inicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +101,7 @@ public class Incio extends javax.swing.JFrame {
         Venta.setText("Venta");
         Venta.setBorder(null);
         Venta.setContentAreaFilled(false);
+        Venta.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         Venta.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         Venta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +115,7 @@ public class Incio extends javax.swing.JFrame {
         balance.setText("Balance");
         balance.setBorder(null);
         balance.setContentAreaFilled(false);
+        balance.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         balance.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         balance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +129,7 @@ public class Incio extends javax.swing.JFrame {
         inventario.setText("Inventario");
         inventario.setBorder(null);
         inventario.setContentAreaFilled(false);
+        inventario.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         inventario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         inventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,47 +137,79 @@ public class Incio extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hogar.png"))); // NOI18N
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/la-gestion-del-inventario (1).png"))); // NOI18N
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/boton-de-venta (1).png"))); // NOI18N
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/negocios (1).png"))); // NOI18N
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-            .addComponent(jSeparator1)
-            .addComponent(icono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(inicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(balance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(menuLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(titulo2, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(menuLayout.createSequentialGroup()
+                .addComponent(titulo2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(menuLayout.createSequentialGroup()
+                        .addComponent(balance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(Venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(menuLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(icono)
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(titulo))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Venta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(titulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Venta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(279, Short.MAX_VALUE))
-            .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(menuLayout.createSequentialGroup()
-                    .addGap(50, 50, 50)
-                    .addComponent(titulo2)
-                    .addContainerGap(672, Short.MAX_VALUE)))
+                .addGap(42, 42, 42))
         );
+
+        fondo.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         bienvenida.setBackground(new java.awt.Color(255, 255, 255));
         bienvenida.setMinimumSize(new java.awt.Dimension(800, 100));
@@ -191,8 +227,12 @@ public class Incio extends javax.swing.JFrame {
         );
         bienvenidaLayout.setVerticalGroup(
             bienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(bienvenidaLayout.createSequentialGroup()
+                .addComponent(mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 37, Short.MAX_VALUE))
         );
+
+        fondo.add(bienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, -1, -1));
 
         contenido.setBackground(new java.awt.Color(255, 255, 255));
         contenido.setMinimumSize(new java.awt.Dimension(800, 650));
@@ -204,31 +244,14 @@ public class Incio extends javax.swing.JFrame {
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         contenidoLayout.setVerticalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 650, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
-        fondo.setLayout(fondoLayout);
-        fondoLayout.setHorizontalGroup(
-            fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fondoLayout.createSequentialGroup()
-                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bienvenida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        fondoLayout.setVerticalGroup(
-            fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(fondoLayout.createSequentialGroup()
-                .addComponent(bienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(contenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        fondo.add(contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -244,9 +267,6 @@ public class Incio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioActionPerformed
-mostrar(new principal());    }//GEN-LAST:event_inicioActionPerformed
-
     private void inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioActionPerformed
        mostrar(new inventario(this));
     }//GEN-LAST:event_inventarioActionPerformed
@@ -258,6 +278,10 @@ mostrar(new principal());    }//GEN-LAST:event_inicioActionPerformed
     private void balanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceActionPerformed
         mostrar(new PBalance());
     }//GEN-LAST:event_balanceActionPerformed
+
+    private void inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioActionPerformed
+        mostrar(new principal(this));
+    }//GEN-LAST:event_inicioActionPerformed
     
     /**
      * Método para mostrar un panel en el contenedor principal.
@@ -303,7 +327,10 @@ mostrar(new principal());    }//GEN-LAST:event_inicioActionPerformed
     private javax.swing.JLabel icono;
     private javax.swing.JButton inicio;
     private javax.swing.JButton inventario;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel mensaje;
     private javax.swing.JPanel menu;
     private javax.swing.JLabel titulo;

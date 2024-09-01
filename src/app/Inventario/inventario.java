@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * Clase para el panel de inventario.
  * Permite gestionar productos, proveedores, pedidos y reportes.
  */
-public class inventario extends javax.swing.JPanel {
+public final class inventario extends javax.swing.JPanel {
     private Incio inicio; // Referencia al objeto Incio
     private final DefaultTableModel modelo;
     private final DefaultTableModel modelo1;
@@ -50,7 +50,6 @@ public class inventario extends javax.swing.JPanel {
         refrescarTablaPedidos(prcbd.ListadoPedidos());
         refrescarTablaReportes(prcbd.ListarReportes());
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -106,6 +105,7 @@ public class inventario extends javax.swing.JPanel {
         jButton1.setText("Buscar");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setMaximumSize(new java.awt.Dimension(100, 30));
         jButton1.setMinimumSize(new java.awt.Dimension(100, 30));
         jButton1.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -120,6 +120,7 @@ public class inventario extends javax.swing.JPanel {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Agregar Producto");
         jButton2.setBorder(null);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setMaximumSize(new java.awt.Dimension(100, 30));
         jButton2.setMinimumSize(new java.awt.Dimension(100, 30));
         jButton2.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -210,6 +211,7 @@ public class inventario extends javax.swing.JPanel {
         jButton3.setText("Buscar");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setMaximumSize(new java.awt.Dimension(100, 30));
         jButton3.setMinimumSize(new java.awt.Dimension(100, 30));
         jButton3.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -224,6 +226,7 @@ public class inventario extends javax.swing.JPanel {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Agregar Provedor");
         jButton4.setBorder(null);
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setMaximumSize(new java.awt.Dimension(100, 30));
         jButton4.setMinimumSize(new java.awt.Dimension(100, 30));
         jButton4.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -260,6 +263,7 @@ public class inventario extends javax.swing.JPanel {
         jButton11.setText("Info");
         jButton11.setBorder(null);
         jButton11.setBorderPainted(false);
+        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton11.setMaximumSize(new java.awt.Dimension(100, 30));
         jButton11.setMinimumSize(new java.awt.Dimension(100, 30));
         jButton11.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -325,6 +329,7 @@ public class inventario extends javax.swing.JPanel {
         jButton5.setText("Buscar");
         jButton5.setBorder(null);
         jButton5.setBorderPainted(false);
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setMaximumSize(new java.awt.Dimension(100, 30));
         jButton5.setMinimumSize(new java.awt.Dimension(100, 30));
         jButton5.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -339,6 +344,7 @@ public class inventario extends javax.swing.JPanel {
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Agregar Pedido");
         jButton6.setBorder(null);
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.setMaximumSize(new java.awt.Dimension(100, 30));
         jButton6.setMinimumSize(new java.awt.Dimension(100, 30));
         jButton6.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -375,6 +381,7 @@ public class inventario extends javax.swing.JPanel {
         jButton12.setText("Info");
         jButton12.setBorder(null);
         jButton12.setBorderPainted(false);
+        jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton12.setMaximumSize(new java.awt.Dimension(100, 30));
         jButton12.setMinimumSize(new java.awt.Dimension(100, 30));
         jButton12.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -431,6 +438,7 @@ public class inventario extends javax.swing.JPanel {
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Agregar Reporte");
         jButton7.setBorder(null);
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.setMaximumSize(new java.awt.Dimension(100, 30));
         jButton7.setMinimumSize(new java.awt.Dimension(100, 30));
         jButton7.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -461,7 +469,11 @@ public class inventario extends javax.swing.JPanel {
         });
         jScrollPane5.setViewportView(listaReportes);
 
+        jButton8.setBackground(new java.awt.Color(177, 11, 11));
+        jButton8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Informacion");
+        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -484,7 +496,7 @@ public class inventario extends javax.swing.JPanel {
                         .addGap(208, 208, 208)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
         ReportesLayout.setVerticalGroup(
@@ -581,7 +593,7 @@ inicio.mostrar(new AgregarProducto(inicio));    }//GEN-LAST:event_jButton2Action
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-         // Obtener y mostrar los detalles del proveedor seleccionado en la tabla
+          // Obtener y mostrar los detalles del proveedor seleccionado en la tabla
     DefaultTableModel modelo2 = (DefaultTableModel) txtLista_pedidos.getModel();
     int filaSeleccionada = txtLista_pedidos.getSelectedRow();
     
@@ -601,7 +613,7 @@ inicio.mostrar(new AgregarProducto(inicio));    }//GEN-LAST:event_jButton2Action
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // Obtener y mostrar los detalles del proveedor seleccionado en la tabla
+       // Obtener y mostrar los detalles del proveedor seleccionado en la tabla
     DefaultTableModel modelo3 = (DefaultTableModel) listaReportes.getModel();
     int filaSeleccionada = listaReportes.getSelectedRow();
     
@@ -663,6 +675,7 @@ inicio.mostrar(new AgregarProducto(inicio));    }//GEN-LAST:event_jButton2Action
      */
     public void refrescarTablaPedidos(ArrayList<proveedor_pedido> pedidos) {
         modelo2.setRowCount(0); // Limpia la tabla antes de actualizarla
+        
         for (proveedor_pedido p : pedidos) {
             Object[] fila = {
                 p.getCodigo(),
@@ -670,12 +683,23 @@ inicio.mostrar(new AgregarProducto(inicio));    }//GEN-LAST:event_jButton2Action
                 p.getProductos().size(),
                 p.getValor_total(),
                 p.getFecha_realizacion(),
-                p.getFecha_entrega()
+                p.getFecha_entrega(),
+                estadoss(p)
             };
             modelo2.addRow(fila);
         }
     }
-
+    private String estadoss (proveedor_pedido pp){
+        
+        String estafo = null;
+        
+        if(pp.getEstado().equals(true)){
+            estafo = "Entregado";
+        }else{
+            estafo = "No entregado";
+        }
+        return estafo;
+    }
     /**
      * Refresca la tabla de reportes con una lista de reportes.
      * @param reportes Lista de reportes a mostrar en la tabla.
@@ -692,7 +716,6 @@ inicio.mostrar(new AgregarProducto(inicio));    }//GEN-LAST:event_jButton2Action
             modelo3.addRow(fila);
         }
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Reportes;
     private javax.swing.JButton jButton1;

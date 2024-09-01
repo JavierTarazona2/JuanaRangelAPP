@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.bd_conexion;
 
-import app.datos.balance;
-import app.datos.cliente;
+
 import app.datos.empleado;
-import app.datos.proveedor;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -18,59 +12,87 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
- *
- * @author javie
+ * Clase para manejar operaciones relacionadas con empleados en la base de datos.
  */
+
 public class empleado_cbd {
-    
+
+    private static final Logger logger = Logger.getLogger(empleado_cbd.class.getName());
+
     /**
      * Obtiene una conexión a la base de datos.
      *
-     * @return Connection a la base de datos.
+     * @return Conexión a la base de datos.
      * @throws SQLException si ocurre un error al obtener la conexión.
      */
+    
     private Connection getConnection() throws SQLException {
         return new conexion().conexio();
     }
-    /**
-     * Registra un nuevo proveedor en la base de datos.
-     *
-     * @param p El proveedor a registrar.
-     */
-    public void RegistrarEmpleado(empleado p) {
-        String empleadoSql = "INSERT INTO empleado (nombre, telefono, correo,identificacion,direccion,fecha_ingreso,fecha_nacimiento,estado,sueldo) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
-        String sqlActualizacion = "UPDATE balance set cantidad = cantidad + ?, fecha = ? WHERE id = 9";
-        try (Connection conn = getConnection();
-             PreparedStatement psActualizar = conn.prepareStatement(sqlActualizacion);
-             PreparedStatement ps = conn.prepareStatement(empleadoSql)) {
 
-            ps.setString(1, p.getNombre());
-            ps.setString(2, p.getTelefono());
-            ps.setString(3, p.getCorreo());
-            ps.setInt(4, p.getIdentificacion());
-            ps.setString(5, p.getDireccion());
-            ps.setDate(6, Date.valueOf(p.getFecha_ingreso()));
-            ps.setDate(7, Date.valueOf(p.getFecha_nacimiento()));
-            ps.setBoolean(8, p.getEstado());
-            ps.setDouble(9, p.getSueldo());
-            psActualizar.setDouble(1,p.getSueldo());
-            psActualizar.setDate(2, Date.valueOf(LocalDate.now()));
-            psActualizar.executeUpdate();
-            ps.executeUpdate();
+    
+    /**
+     * Registra un nuevo empleado en la base de datos.
+     *
+     * @param emp
+     * @param empleado El empleado a registrar.
+     */
+    
+    public void registrarEmpleado(empleado emp) {
+        String sqlEmpleado = "INSERT INTO empleado (nombre, telefono, correo, identificacion, direccion, fecha_ingreso, fecha_nacimiento, estado, sueldo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlActualizacion = "UPDATE balance SET cantidad = cantidad + ?, fecha = ? WHERE id = 9";
+
+        try (Connection conn = getConnection();
+             PreparedStatement psEmpleado = conn.prepareStatement(sqlEmpleado);
+             PreparedStatement psActualizacion = conn.prepareStatement(sqlActualizacion)) {
+
+            // Configurar parámetros para la inserción del empleado
+            setEmpleadoParameters(psEmpleado, emp);
+            psEmpleado.executeUpdate();
+
+            // Configurar parámetros para la actualización del balance
+            psActualizacion.setDouble(1, emp.getSueldo());
+            psActualizacion.setDate(2, Date.valueOf(LocalDate.now()));
+            psActualizacion.executeUpdate();
+
             System.out.println("Empleado registrado exitosamente.");
 
         } catch (SQLException e) {
-            Logger.getLogger(proveedor_cbd.class.getName()).log(Level.SEVERE, "Error al registrar el Empleado", e);
+            logger.log(Level.SEVERE, "Error al registrar el empleado", e);
         }
     }
+
     
     /**
-     * Método para listar todos los clientes en la base de datos.
-     * 
-     * @return Lista de clientes.
+     * Configura los parámetros del PreparedStatement para insertar un empleado.
+     *
+     * @param ps El PreparedStatement a configurar.
+     * @param emp El objeto empleado con los datos.
+     * @throws SQLException si ocurre un error al configurar los parámetros.
      */
-    public ArrayList<empleado> ListarEmpleados() {
+    
+    private void setEmpleadoParameters(PreparedStatement ps, empleado emp) throws SQLException {
+        ps.setString(1, emp.getNombre());
+        ps.setString(2, emp.getTelefono());
+        ps.setString(3, emp.getCorreo());
+        ps.setInt(4, emp.getIdentificacion());
+        ps.setString(5, emp.getDireccion());
+        ps.setDate(6, Date.valueOf(emp.getFecha_ingreso()));
+        ps.setDate(7, Date.valueOf(emp.getFecha_nacimiento()));
+        ps.setBoolean(8, emp.getEstado());
+        ps.setDouble(9, emp.getSueldo());
+    }
+
+    
+    /**
+     * Lista todos los empleados en la base de datos.
+     *
+     * @return Lista de empleados.
+     */
+    
+    public ArrayList<empleado> listarEmpleados() {
         ArrayList<empleado> empleados = new ArrayList<>();
         String sql = "SELECT * FROM empleado";
 
@@ -78,92 +100,167 @@ public class empleado_cbd {
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
-            // Recorrer el ResultSet y añadir los clientes a la lista
             while (rs.next()) {
-                empleado c = new empleado();
-                c.setNombre(rs.getString("nombre"));
-                c.setTelefono(rs.getString("telefono"));
-                c.setCorreo(rs.getString("correo"));
-                c.setIdentificacion(rs.getInt("identificacion"));
-                c.setDireccion(rs.getString("direccion"));
-                c.setFecha_ingreso(rs.getDate("fecha_ingreso").toLocalDate());
-                c.setFecha_nacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
-                c.setEstado(rs.getBoolean("estado"));
-                c.setSueldo(rs.getDouble("sueldo"));
-                c.setEdad();
-                
-                empleados.add(c);
-                
+                empleados.add(resultSetToEmpleado(rs));
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(venta_cbd.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, "Error al listar empleados", ex);
         }
 
         return empleados;
     }
-    public empleado ListarEmpleado(String nombre) {
+
+    
+    /**
+     * Obtiene un empleado específico por nombre.
+     *
+     * @param nombre Nombre del empleado.
+     * @return El empleado con el nombre especificado.
+     * @throws IllegalArgumentException si no se encuentra el empleado.
+     */
+    
+    public empleado listarEmpleado(String nombre) {
         String sql = "SELECT * FROM empleado WHERE nombre = ?";
-        empleado c = null;
+        empleado emp = null;
 
         try (Connection conn = getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setString(1, nombre);
-            
+
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                c = new empleado();
-                c.setNombre(rs.getString("nombre"));
-                c.setTelefono(rs.getString("telefono"));
-                c.setCorreo(rs.getString("correo"));
-                c.setIdentificacion(rs.getInt("identificacion"));
-                c.setDireccion(rs.getString("direccion"));
-                c.setFecha_ingreso(rs.getDate("fecha_ingreso").toLocalDate());
-                c.setFecha_nacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
-                c.setEstado(rs.getBoolean("estado"));
-                c.setSueldo(rs.getDouble("sueldo"));
-                c.setEdad();
+                    emp = resultSetToEmpleado(rs);
                 }
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(proveedor_cbd.class.getName()).log(Level.SEVERE, "Error al listar proveedor por nombre exacto", ex);
+            logger.log(Level.SEVERE, "Error al listar empleado por nombre", ex);
         }
 
-        if (c == null) {
-            throw new IllegalArgumentException("No se encontró proveedor con el nombre: " + nombre);
+        if (emp == null) {
+            throw new IllegalArgumentException("No se encontró empleado con el nombre: " + nombre);
         }
 
-        return c;
+        return emp;
     }
+
+    
     /**
-    * Actualiza la información de un empleado en la base de datos.
-    *
-    * @param empleado El objeto empleado con la información actualizada.
-    */
-   public void actualizarEmpleado(empleado empleado) {
-       String sql = "UPDATE empleado SET telefono = ?, correo = ?, direccion = ?, sueldo = ?, estado = ? WHERE identificacion = ?";
+     * Actualiza la información de un empleado en la base de datos.
+     *
+     * @param emp El objeto empleado con la información actualizada.
+     */
+    
+    public void actualizarEmpleado(empleado emp) {
+        String sql = "UPDATE empleado SET telefono = ?, correo = ?, direccion = ?, sueldo = ?, estado = ? WHERE identificacion = ?";
 
-       try (Connection conn = getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-           ps.setString(1, empleado.getTelefono());
-           ps.setString(2, empleado.getCorreo());
-           ps.setString(3, empleado.getDireccion());
-           ps.setDouble(4, empleado.getSueldo());
-           ps.setBoolean(5, empleado.getEstado());
-           ps.setInt(6, empleado.getIdentificacion());
+            ps.setString(1, emp.getTelefono());
+            ps.setString(2, emp.getCorreo());
+            ps.setString(3, emp.getDireccion());
+            ps.setDouble(4, emp.getSueldo());
+            ps.setBoolean(5, emp.getEstado());
+            ps.setInt(6, emp.getIdentificacion());
 
-           int filasActualizadas = ps.executeUpdate();
-           if (filasActualizadas > 0) {
-               System.out.println("Empleado actualizado exitosamente.");
-           } else {
-               System.out.println("No se encontró el empleado con la identificación especificada.");
-           }
+            int filasActualizadas = ps.executeUpdate();
+            if (filasActualizadas > 0) {
+                System.out.println("Empleado actualizado exitosamente.");
+            } else {
+                System.out.println("No se encontró el empleado con la identificación especificada.");
+            }
 
-       } catch (SQLException e) {
-           Logger.getLogger(empleado_cbd.class.getName()).log(Level.SEVERE, "Error al actualizar el empleado", e);
-       }
-   }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Error al actualizar el empleado", e);
+        }
+    }
 
+    
+    /**
+     * Convierte un ResultSet en un objeto empleado.
+     *
+     * @param rs El ResultSet con los datos del empleado.
+     * @return El objeto empleado.
+     * @throws SQLException si ocurre un error al leer del ResultSet.
+     */
+    
+    private empleado resultSetToEmpleado(ResultSet rs) throws SQLException {
+        empleado emp = new empleado();
+        emp.setNombre(rs.getString("nombre"));
+        emp.setTelefono(rs.getString("telefono"));
+        emp.setCorreo(rs.getString("correo"));
+        emp.setIdentificacion(rs.getInt("identificacion"));
+        emp.setDireccion(rs.getString("direccion"));
+        emp.setFecha_ingreso(rs.getDate("fecha_ingreso").toLocalDate());
+        emp.setFecha_nacimiento(rs.getDate("fecha_nacimiento").toLocalDate());
+        emp.setEstado(rs.getBoolean("estado"));
+        emp.setSueldo(rs.getDouble("sueldo"));
+        emp.setEdad();
+        return emp;
+    }
+    
+    
+     /**
+     * Obtiene el ID del producto basado en su código.
+     * @param nombre Código del producto.
+     * @return ID del producto, o null si no se encuentra.
+     */
+    
+    public Integer obtenerIdEmpleado(String nombre) {
+        String sql = "SELECT id FROM empleado WHERE nombre = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id");
+                }
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(producto_cbd.class.getName()).log(Level.SEVERE, "Error al obtener el ID del empleado", e);
+        }
+        return null;
+    }
+    
+    
+     /**
+     * Obtiene un empleado específico por nombre.
+     *
+     * @param id id del empleado.
+     * @return El empleado con el nombre especificado.
+     * @throws IllegalArgumentException si no se encuentra el empleado.
+     */
+    
+    public empleado obtenerEmpleadoporId(Integer id) {
+        String sql = "SELECT * FROM empleado WHERE nombre = ?";
+        empleado emp = null;
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    emp = resultSetToEmpleado(rs);
+                }
+            }
+
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "Error al listar empleado por nombre", ex);
+        }
+
+        if (emp == null) {
+            throw new IllegalArgumentException("No se encontró empleado con el nombre: " + id);
+        }
+
+        return emp;
+    }
+    
+    
+    
 }

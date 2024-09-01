@@ -30,9 +30,16 @@ public class bienvenidas extends javax.swing.JPanel {
     private void initComponents() {
 
         jButton2 = new javax.swing.JButton();
-        icono = new javax.swing.JLabel();
+        titulo1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        titulo4 = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
+        titulo2 = new javax.swing.JLabel();
+        titulo3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(700, 500));
@@ -42,7 +49,7 @@ public class bienvenidas extends javax.swing.JPanel {
         jButton2.setBackground(new java.awt.Color(177, 11, 11));
         jButton2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Bienvenido");
+        jButton2.setText("Ingresar");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -50,21 +57,48 @@ public class bienvenidas extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 320, 50));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 220, 50));
 
-        icono.setForeground(new java.awt.Color(255, 255, 255));
-        icono.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icono.setText("icono");
-        add(icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 190, 180));
+        titulo1.setBackground(new java.awt.Color(0, 0, 0));
+        titulo1.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        titulo1.setForeground(new java.awt.Color(255, 255, 255));
+        titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo1.setText("Juana Rangel");
+        add(titulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 240, 50));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 400, 10));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 400, 10));
 
-        titulo.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        titulo.setForeground(new java.awt.Color(255, 255, 255));
-        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("PANADERIA JUANA RANGEL");
-        add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 26, 700, 50));
+        titulo4.setBackground(new java.awt.Color(0, 0, 0));
+        titulo4.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        titulo4.setForeground(new java.awt.Color(255, 255, 255));
+        titulo4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo4.setText("Panaderia");
+        add(titulo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 180, 50));
+
+        titulo.setBackground(new java.awt.Color(0, 0, 0));
+        titulo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        titulo.setText("Contraseña");
+        add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 260, 50));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo_bienvenida.jpg"))); // NOI18N
-        add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
+        add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 500));
+
+        titulo2.setBackground(new java.awt.Color(0, 0, 0));
+        titulo2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        titulo2.setText("Nombre de Usuario");
+        add(titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 260, 50));
+
+        titulo3.setBackground(new java.awt.Color(0, 0, 0));
+        titulo3.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        titulo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo3.setText("Iniciar Sesión");
+        add(titulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 260, 50));
+
+        jTextField1.setBorder(null);
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 410, 40));
+
+        jTextField2.setBorder(null);
+        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 410, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -76,8 +110,15 @@ public class bienvenidas extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fondo;
-    private javax.swing.JLabel icono;
     private javax.swing.JButton jButton2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel titulo;
+    private javax.swing.JLabel titulo1;
+    private javax.swing.JLabel titulo2;
+    private javax.swing.JLabel titulo3;
+    private javax.swing.JLabel titulo4;
     // End of variables declaration//GEN-END:variables
 }

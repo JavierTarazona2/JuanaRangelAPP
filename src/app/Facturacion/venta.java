@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package app.Facturacion;
 
 import app.Inicio.Incio;
@@ -33,20 +29,12 @@ public class venta extends javax.swing.JPanel {
         initComponents();
         iniciotablas();
     }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        Venta_ = new javax.swing.JPanel();
-        txtventa = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        Listaventa = new javax.swing.JTable();
-        jButton13 = new javax.swing.JButton();
         pedido = new javax.swing.JPanel();
         txtpedidos = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
@@ -68,123 +56,17 @@ public class venta extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         listaempleado = new javax.swing.JTable();
         jButton29 = new javax.swing.JButton();
+        Venta_ = new javax.swing.JPanel();
+        txtventa = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Listaventa = new javax.swing.JTable();
+        jButton13 = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(800, 650));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        Venta_.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtventa.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtventa.setText("Buscar por cliente de la venta");
-        txtventa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        txtventa.setMinimumSize(new java.awt.Dimension(400, 30));
-        txtventa.setPreferredSize(new java.awt.Dimension(400, 30));
-        txtventa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtventaActionPerformed(evt);
-            }
-        });
-
-        jButton5.setBackground(new java.awt.Color(182, 11, 11));
-        jButton5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Buscar");
-        jButton5.setBorder(null);
-        jButton5.setBorderPainted(false);
-        jButton5.setMaximumSize(new java.awt.Dimension(100, 30));
-        jButton5.setMinimumSize(new java.awt.Dimension(100, 30));
-        jButton5.setPreferredSize(new java.awt.Dimension(100, 30));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setBackground(new java.awt.Color(182, 11, 11));
-        jButton6.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Agregar Venta");
-        jButton6.setBorder(null);
-        jButton6.setMaximumSize(new java.awt.Dimension(100, 30));
-        jButton6.setMinimumSize(new java.awt.Dimension(100, 30));
-        jButton6.setPreferredSize(new java.awt.Dimension(100, 30));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        Listaventa.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Codigo", "Cliente", "Valor", "Tipo", "productos", "realizacion"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(Listaventa);
-
-        jButton13.setBackground(new java.awt.Color(182, 11, 11));
-        jButton13.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(255, 255, 255));
-        jButton13.setText("info");
-        jButton13.setBorder(null);
-        jButton13.setBorderPainted(false);
-        jButton13.setMaximumSize(new java.awt.Dimension(100, 30));
-        jButton13.setMinimumSize(new java.awt.Dimension(100, 30));
-        jButton13.setPreferredSize(new java.awt.Dimension(100, 30));
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout Venta_Layout = new javax.swing.GroupLayout(Venta_);
-        Venta_.setLayout(Venta_Layout);
-        Venta_Layout.setHorizontalGroup(
-            Venta_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Venta_Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(Venta_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(Venta_Layout.createSequentialGroup()
-                        .addComponent(txtventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-        Venta_Layout.setVerticalGroup(
-            Venta_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Venta_Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(Venta_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtventa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Venta_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Ventas ", Venta_);
 
         pedido.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -200,7 +82,7 @@ public class venta extends javax.swing.JPanel {
         });
 
         jButton7.setBackground(new java.awt.Color(182, 11, 11));
-        jButton7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Buscar");
         jButton7.setBorder(null);
@@ -215,7 +97,7 @@ public class venta extends javax.swing.JPanel {
         });
 
         jButton8.setBackground(new java.awt.Color(182, 11, 11));
-        jButton8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Crear Pedido");
         jButton8.setBorder(null);
@@ -250,7 +132,7 @@ public class venta extends javax.swing.JPanel {
         jScrollPane4.setViewportView(ListaPedido);
 
         jButton12.setBackground(new java.awt.Color(182, 11, 11));
-        jButton12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText("Info");
         jButton12.setBorder(null);
@@ -268,21 +150,19 @@ public class venta extends javax.swing.JPanel {
         pedido.setLayout(pedidoLayout);
         pedidoLayout.setHorizontalGroup(
             pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pedidoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pedidoLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pedidoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane4)
                     .addGroup(pedidoLayout.createSequentialGroup()
                         .addComponent(txtpedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32))
         );
         pedidoLayout.setVerticalGroup(
             pedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,8 +194,8 @@ public class venta extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(182, 11, 11));
-        jButton3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton3.setBackground(new java.awt.Color(177, 11, 11));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Buscar");
         jButton3.setBorder(null);
@@ -329,8 +209,8 @@ public class venta extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(182, 11, 11));
-        jButton4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton4.setBackground(new java.awt.Color(177, 11, 11));
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Agregar Cliente");
         jButton4.setBorder(null);
@@ -364,8 +244,8 @@ public class venta extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(listacliente);
 
-        jButton11.setBackground(new java.awt.Color(182, 11, 11));
-        jButton11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton11.setBackground(new java.awt.Color(177, 11, 11));
+        jButton11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("Info");
         jButton11.setBorder(null);
@@ -390,21 +270,19 @@ public class venta extends javax.swing.JPanel {
         clientes.setLayout(clientesLayout);
         clientesLayout.setHorizontalGroup(
             clientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(clientesLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clientesLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(clientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(clientesLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(37, Short.MAX_VALUE))
+                .addGroup(clientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
                     .addGroup(clientesLayout.createSequentialGroup()
                         .addComponent(txtcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 98, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35))
         );
         clientesLayout.setVerticalGroup(
             clientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,8 +315,8 @@ public class venta extends javax.swing.JPanel {
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(182, 11, 11));
-        jButton9.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton9.setBackground(new java.awt.Color(177, 11, 11));
+        jButton9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Buscar");
         jButton9.setBorder(null);
@@ -452,8 +330,8 @@ public class venta extends javax.swing.JPanel {
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(182, 11, 11));
-        jButton10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton10.setBackground(new java.awt.Color(177, 11, 11));
+        jButton10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Agregar Empleado");
         jButton10.setBorder(null);
@@ -487,8 +365,8 @@ public class venta extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(listaempleado);
 
-        jButton29.setBackground(new java.awt.Color(182, 11, 11));
-        jButton29.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton29.setBackground(new java.awt.Color(177, 11, 11));
+        jButton29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton29.setForeground(new java.awt.Color(255, 255, 255));
         jButton29.setText("Info");
         jButton29.setBorder(null);
@@ -506,21 +384,19 @@ public class venta extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(50, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
+                .addGap(34, 34, 34))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,12 +408,125 @@ public class venta extends javax.swing.JPanel {
                         .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Empleados", jPanel2);
+
+        Venta_.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtventa.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtventa.setText("Buscar por cliente de la venta");
+        txtventa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        txtventa.setMinimumSize(new java.awt.Dimension(400, 30));
+        txtventa.setPreferredSize(new java.awt.Dimension(400, 30));
+        txtventa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtventaActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(177, 11, 11));
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Buscar");
+        jButton5.setBorder(null);
+        jButton5.setBorderPainted(false);
+        jButton5.setMaximumSize(new java.awt.Dimension(100, 30));
+        jButton5.setMinimumSize(new java.awt.Dimension(100, 30));
+        jButton5.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setBackground(new java.awt.Color(177, 11, 11));
+        jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Agregar Venta");
+        jButton6.setBorder(null);
+        jButton6.setMaximumSize(new java.awt.Dimension(100, 30));
+        jButton6.setMinimumSize(new java.awt.Dimension(100, 30));
+        jButton6.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        Listaventa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Codigo", "Cliente", "Valor", "Tipo", "productos", "realizacion"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(Listaventa);
+
+        jButton13.setBackground(new java.awt.Color(177, 11, 11));
+        jButton13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jButton13.setText("info");
+        jButton13.setBorder(null);
+        jButton13.setBorderPainted(false);
+        jButton13.setMaximumSize(new java.awt.Dimension(100, 30));
+        jButton13.setMinimumSize(new java.awt.Dimension(100, 30));
+        jButton13.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Venta_Layout = new javax.swing.GroupLayout(Venta_);
+        Venta_.setLayout(Venta_Layout);
+        Venta_Layout.setHorizontalGroup(
+            Venta_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Venta_Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(Venta_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(Venta_Layout.createSequentialGroup()
+                        .addComponent(txtventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+        Venta_Layout.setVerticalGroup(
+            Venta_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Venta_Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(Venta_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtventa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(Venta_Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Ventas ", Venta_);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -614,7 +603,7 @@ public class venta extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-      // Obtener el modelo de la tabla
+        // Obtener el modelo de la tabla
      DefaultTableModel modelo = (DefaultTableModel) listacliente.getModel();
     
     // Obtener la fila seleccionada
@@ -660,7 +649,7 @@ public class venta extends javax.swing.JPanel {
         String nombre = (String) modelo3.getValueAt(filaSeleccionada, 0);
         
         // Obtener el cliente usando el nombre
-        empleado clienteSeleccionado = ecbd.ListarEmpleado(nombre);
+        empleado clienteSeleccionado = ecbd.listarEmpleado(nombre);
         
         // Verificar que el cliente no sea null
         if (clienteSeleccionado != null) {
@@ -678,7 +667,7 @@ public class venta extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-     // Obtener el modelo de la tabla
+      // Obtener el modelo de la tabla
      DefaultTableModel modelo1 = (DefaultTableModel) ListaPedido.getModel();
     
     // Obtener la fila seleccionada
@@ -708,7 +697,7 @@ public class venta extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        
+       
          // Obtener el modelo de la tabla
      DefaultTableModel modelo2= (DefaultTableModel) Listaventa.getModel();
     
@@ -782,7 +771,8 @@ public class venta extends javax.swing.JPanel {
                 pd.getProductos().size(),
                 pd.getValor(),
                 pd.getFecha_realizado(),
-                pd.getFecha_entrega()
+                pd.getFecha_entrega(),
+                estadoss(pd)
             };
             modelo1.addRow(fila);
         }
@@ -818,7 +808,7 @@ public class venta extends javax.swing.JPanel {
         refrescarTablaventas(vcbd.ListadoVentas());
 
         modelo3 = (DefaultTableModel) listaempleado.getModel();
-        refrescarTablaempleado(ecbd.ListarEmpleados());
+        refrescarTablaempleado(ecbd.listarEmpleados());
     }
     private String codigoVenta(){
         String codigo;
@@ -844,6 +834,17 @@ public class venta extends javax.swing.JPanel {
         codigo = "COD" + fechaFormateada + horaFormateada;
         
         return codigo;
+    }
+     private String estadoss (pedido pp){
+        
+        String estafo = null;
+        
+        if(pp.getEstado().equals(true)){
+            estafo = "Entregado";
+        }else{
+            estafo = "No entregado";
+        }
+        return estafo;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
