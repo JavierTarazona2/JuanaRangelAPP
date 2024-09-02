@@ -437,7 +437,7 @@ public class venta_cbd {
    
    public ArrayList<Ventas> ListadoVentas(String nombreCliente) {
        ArrayList<Ventas> ventas = new ArrayList<>();
-       String sqlVenta = "SELECT * FROM venta WHERE id_tipo = 2 AND id_cliente = ?";
+       String sqlVenta = "SELECT * FROM venta WHERE id_cliente = ?";
        String sqlProducto = "SELECT * FROM producto_venta WHERE id_venta = ?";
 
        try (Connection conn = getConnection();

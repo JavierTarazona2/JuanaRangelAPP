@@ -461,7 +461,7 @@ public class AgregarCliente extends javax.swing.JPanel {
         refrescarTablaventas(vcbd.ListadoVentas(c.getNombre())); 
     }
     public void refrescarTablaventas(ArrayList<Ventas> pr) {
-        if(pr.size() != 0){
+        if(!pr.isEmpty()){
             System.out.print("La lista no se encuentra vacia");
         }
         modelo2.setRowCount(0); // Limpia la tabla antes de actualizarla
