@@ -6,6 +6,7 @@ import app.bd_conexion.producto_cbd;
 import app.bd_conexion.venta_cbd;
 import app.datos.balance;
 import app.datos.cliente;
+import app.datos.pdf;
 import app.datos.pedido;
 import app.datos.producto;
 import java.time.LocalDate;
@@ -525,8 +526,8 @@ public class AgregarPedidos extends javax.swing.JPanel {
        pedido.setValor(valor);
        pedido.setCodigo(codigofactura.getText());
        pedido.setTipo_venta(2);
-//       pdf pdf = new pdf();
-//       pdf.CrearPdf(pedido);
+       pdf pdf = new pdf();
+       pdf.CrearPdf(pedido);
        bdVenta.registrarVenta(pedido);
         inicio.mostrar(new venta(inicio));
     }//GEN-LAST:event_jButton2ActionPerformed

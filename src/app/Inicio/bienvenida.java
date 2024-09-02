@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -20,6 +21,9 @@ public final class bienvenida extends javax.swing.JFrame {
     public bienvenida(){
         initComponents();
         mostrar(new bienvenidas(this));
+        // Cargar el ícono
+         ImageIcon icono = new ImageIcon(getClass().getResource("/imagenes/GALLETAFONDOJAVIEE.png"));
+        setIconImage(icono.getImage());
     }
 
     

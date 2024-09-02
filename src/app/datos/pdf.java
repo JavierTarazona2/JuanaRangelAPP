@@ -19,6 +19,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,7 +57,7 @@ public class pdf {
 
     if (ventas instanceof pedido) {
         pedido venta = (pedido) ventas;
-        direccionpdf = ruta + "\\OneDrive\\Documentos\\Facturas\\Pedidos\\factura-" + venta.getCodigo() + ".pdf";
+         direccionpdf = ruta + File.separator + "Downloads" + File.separator + "JuanaRangelapp" + File.separator + "JuanaRangelapp" + File.separator + "src" + File.separator + "Facturas" + File.separator + "Pedidos" + File.separator + "factura-" + venta.getCodigo() + ".pdf";
 
         try {
             PdfWriter.getInstance(documento, new FileOutputStream(direccionpdf));
@@ -84,11 +86,12 @@ public class pdf {
         } finally {
             documento.close();
              EnviarCorreo(direccionpdf, venta);
+              abrirArchivo(direccionpdf); // Abrir archivo al finalizar
         }
 
     } else if (ventas instanceof Ventas) {
         Ventas venta = (Ventas) ventas;
-        direccionpdf = ruta + "\\OneDrive\\Documentos\\Facturas\\Ventas\\factura-" + venta.getCodigo() + ".pdf";
+        direccionpdf = ruta + File.separator + "Downloads" + File.separator + "JuanaRangelapp" + File.separator + "JuanaRangelapp" + File.separator + "src" + File.separator + "Facturas" + File.separator + "Ventas" + File.separator + "factura-" + venta.getCodigo() + ".pdf";
 
         try {
             PdfWriter.getInstance(documento, new FileOutputStream(direccionpdf));
@@ -114,10 +117,26 @@ public class pdf {
         } finally {
             documento.close();
              EnviarCorreo(direccionpdf, venta);
+              abrirArchivo(direccionpdf); // Abrir archivo al finalizar
         }
     }
     }
-
+    
+    private void abrirArchivo(String filePath) {
+    try {
+        File archivo = new File(filePath);
+        if (archivo.exists()) {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(archivo);
+            } else {
+                System.out.println("Desktop no es compatible en este sistema.");
+            }
+        } else {
+            System.out.println("El archivo no existe.");
+        }
+    } catch (IOException e) {
+    }
+}
     
     private void addEncabezado(Document documento, BaseColor colorPersonalizado) throws DocumentException, IOException {
         PdfPTable tablaEncabezado = new PdfPTable(3);

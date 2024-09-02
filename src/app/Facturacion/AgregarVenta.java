@@ -7,6 +7,7 @@ import app.bd_conexion.venta_cbd;
 import app.datos.Ventas;
 import app.datos.balance;
 import app.datos.cliente;
+import app.datos.pdf;
 import app.datos.pedido;
 import app.datos.producto;
 import java.time.LocalDate;
@@ -606,6 +607,9 @@ public final class AgregarVenta extends javax.swing.JPanel {
        balance.setTipo("Ingreso");
        balance.setValor(venta.getValor());
        bcdb.registrarBalance(balance);
+       pdf pdf = new pdf();
+       pdf.CrearPdf(venta);
+       
 
        // Muestra la interfaz de ventas
        inicio.mostrar(new venta(inicio));

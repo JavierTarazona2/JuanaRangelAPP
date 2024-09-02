@@ -30,6 +30,8 @@ public final class Incio extends javax.swing.JFrame {
         actualizarFecha(mensaje); // Actualiza la etiqueta con la fecha actual.
         mostrar(new principal(this)); // Muestra el panel principal al iniciar la aplicación.
         user.desactivarboton(balance);
+         ImageIcon icono = new ImageIcon(getClass().getResource("/imagenes/GALLETAFONDOJAVIEE.png"));
+        setIconImage(icono.getImage());
     }
 
     /**
@@ -61,9 +63,10 @@ public final class Incio extends javax.swing.JFrame {
         contenido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
+        setTitle("PanFlow");
         setMaximumSize(new java.awt.Dimension(1050, 750));
         setMinimumSize(new java.awt.Dimension(1050, 750));
+        setResizable(false);
 
         fondo.setBackground(new java.awt.Color(0, 0, 0));
         fondo.setMaximumSize(new java.awt.Dimension(1032767, 1032767));
@@ -294,6 +297,7 @@ public final class Incio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioActionPerformed
