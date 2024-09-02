@@ -286,8 +286,8 @@ public class proveedor_cbd {
 
            // Prepara la consulta SQL para los productos asociados al pedido.
            try (PreparedStatement psProducto = conn.prepareStatement(productosql)) {
-               for (int i = 0; i < p.getProductos().size(); i++) {
-                   producto prod = p.getProductos().get(i);
+               int i = 0;
+              for(producto prod : p.getProductos()){
                    Integer id_producto = prcbd.obtenerIdProducto(prod.getCodigo());
 
                    if (id_producto == null) {
@@ -296,6 +296,7 @@ public class proveedor_cbd {
                    }
 
                    int cantidad = p.getCantidades().get(i);
+                   i++;
                    // Asigna los valores a los parámetros de la consulta SQL para los productos.
                    psProducto.setInt(1, id_pedido);
                    psProducto.setInt(2, id_producto);

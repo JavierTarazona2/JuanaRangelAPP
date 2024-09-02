@@ -54,6 +54,7 @@ public class AgregarPedidos extends javax.swing.JPanel {
             nentregado.setEnabled(true);
         }
         verificar = pedido.getEstado();
+        inicio.getUser().desactivarboton(BActualizar);
         
          
     }
@@ -118,20 +119,27 @@ public class AgregarPedidos extends javax.swing.JPanel {
         txtdetalles.setColumns(20);
         txtdetalles.setRows(5);
         jScrollPane2.setViewportView(txtdetalles);
-
+         BActualizar.setBackground(new java.awt.Color(177, 11, 11));
+        BActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        BActualizar.setText("Volver");
+        BActualizar.setMinimumSize(new java.awt.Dimension(100, 30)); // Tamaño mínimo
+        BActualizar.setPreferredSize(new java.awt.Dimension(120, 30)); // Tamaño preferido
+        BActualizar.setMaximumSize(new java.awt.Dimension(150, 30)); // Tamaño máximo
         BActualizar.setText("Actualizar");
         BActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BActualizarActionPerformed(evt);
             }
         });
-
+        
+         jButton3.setBackground(new java.awt.Color(177, 11, 11));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Volver");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jButton3.setMinimumSize(new java.awt.Dimension(100, 30)); // Tamaño mínimo
+        jButton3.setPreferredSize(new java.awt.Dimension(120, 30)); // Tamaño preferido
+        jButton3.setMaximumSize(new java.awt.Dimension(150, 30)); // Tamaño máximo
+        jButton3.setText("Volver");
+        jButton3.addActionListener(this::jButton3ActionPerformed);
 
         jLabel6.setText("Cliente");
 
@@ -156,7 +164,12 @@ public class AgregarPedidos extends javax.swing.JPanel {
         jLabel11.setText("Fecha Realizado");
 
        
-
+         BEliminar.setBackground(new java.awt.Color(177, 11, 11));
+        BEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        BEliminar.setText("Volver");
+        BEliminar.setMinimumSize(new java.awt.Dimension(100, 30)); // Tamaño mínimo
+        BEliminar.setPreferredSize(new java.awt.Dimension(120, 30)); // Tamaño preferido
+        BEliminar.setMaximumSize(new java.awt.Dimension(150, 30)); // Tamaño máximo
         BEliminar.setText("Eliminar");
         BEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,6 +382,10 @@ public class AgregarPedidos extends javax.swing.JPanel {
         jLabel3.setText("Id o nombre de producto:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
+        listaProducto.setAutoCreateRowSorter(true);
+        listaProducto.setBackground(new java.awt.Color(245, 22, 22));
+        listaProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        listaProducto.setForeground(new java.awt.Color(255, 255, 255));
         listaProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -684,7 +701,7 @@ public class AgregarPedidos extends javax.swing.JPanel {
     }
     private void verificarEstado(){
         if(verificar.equals(false)){
-            detalle = "Peido realizado por " + pedido.getCliente().getNombre();
+            detalle = "Pedido realizado por " + pedido.getCliente().getNombre();
             balance.setDetalles(detalle);
             balance.setFecha(LocalDate.now());
             balance.setTipo("Ingreso");

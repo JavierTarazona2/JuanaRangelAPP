@@ -7,8 +7,6 @@ import app.datos.Ventas;
 import app.datos.cliente;
 import app.datos.empleado;
 import app.datos.pedido;
-import app.datos.proveedor;
-import app.datos.proveedor_pedido;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -28,13 +26,14 @@ public class venta extends javax.swing.JPanel {
         this.inicio = inicio;
         initComponents();
         iniciotablas();
+        verificarUser();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        menu_venta = new javax.swing.JTabbedPane();
         pedido = new javax.swing.JPanel();
         txtpedidos = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
@@ -179,7 +178,7 @@ public class venta extends javax.swing.JPanel {
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Pedido", pedido);
+        menu_venta.addTab("Pedido", pedido);
 
         clientes.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -299,7 +298,7 @@ public class venta extends javax.swing.JPanel {
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Clientes", clientes);
+        menu_venta.addTab("Clientes", clientes);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setMinimumSize(new java.awt.Dimension(800, 650));
@@ -413,7 +412,7 @@ public class venta extends javax.swing.JPanel {
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Empleados", jPanel2);
+        menu_venta.addTab("Empleados", jPanel2);
 
         Venta_.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -526,17 +525,17 @@ public class venta extends javax.swing.JPanel {
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Ventas ", Venta_);
+        menu_venta.addTab("Ventas ", Venta_);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(menu_venta)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(menu_venta)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -620,7 +619,7 @@ public class venta extends javax.swing.JPanel {
         // Verificar que el cliente no sea null
         if (clienteSeleccionado != null) {
             // Crear la instancia de AgregarCliente y mostrarla
-            AgregarCliente agregarCliente = new AgregarCliente(clienteSeleccionado);
+            AgregarCliente agregarCliente = new AgregarCliente(inicio,clienteSeleccionado);
             inicio.mostrar(agregarCliente);
         } else {
             // Mostrar un mensaje si el cliente no se encuentra
@@ -846,6 +845,12 @@ public class venta extends javax.swing.JPanel {
         }
         return estafo;
     }
+      private void verificarUser() {
+        if(inicio.getUser().getAdministrador() == false){
+        menu_venta.setEnabledAt(menu_venta.indexOfTab("Empleados"), false);
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable ListaPedido;
@@ -870,9 +875,9 @@ public class venta extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable listacliente;
     private javax.swing.JTable listaempleado;
+    private javax.swing.JTabbedPane menu_venta;
     private javax.swing.JPanel pedido;
     private javax.swing.JTextField txtcliente;
     private javax.swing.JTextField txtpedidos;

@@ -4,6 +4,8 @@
  */
 package app.datos;
 
+import javax.swing.JButton;
+
 
 public class usuario {
     private String user;
@@ -63,5 +65,10 @@ public class usuario {
         this.administrador = administrador;
     }
     
-    
+    public void desactivarboton(JButton j){
+        if(administrador == false){
+        j.setEnabled(false);
+        }
+        System.out.println("El estado es " + administrador);
+    }
 }

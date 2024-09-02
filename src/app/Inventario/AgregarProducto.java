@@ -306,16 +306,16 @@ public class AgregarProducto extends javax.swing.JPanel {
 
     } catch (NumberFormatException e) {
         // Manejo de excepción si los campos de entrada, venta y cantidad no contienen valores numéricos válidos.
-        JOptionPane.showMessageDialog(this, "Los campos de entrada, venta y cantidad deben contener valores numéricos válidos.", "Error de validación", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(inicio, "Los campos de entrada, venta y cantidad deben contener valores numéricos válidos.", "Error de validación", JOptionPane.ERROR_MESSAGE);
     } catch (DateTimeParseException e) {
         // Manejo de excepción si la fecha de vencimiento no tiene un formato válido.
-        JOptionPane.showMessageDialog(this, "La fecha de vencimiento debe tener un formato válido (YYYY-MM-DD).", "Error de validación", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(inicio, "La fecha de vencimiento debe tener un formato válido (YYYY-MM-DD).", "Error de validación", JOptionPane.ERROR_MESSAGE);
     } catch (IllegalArgumentException e) {
         // Manejo de excepción si algún campo obligatorio está vacío.
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(inicio, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
     } catch (Exception e) {
         // Manejo de cualquier otra excepción inesperada.
-        JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(inicio, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -370,7 +370,7 @@ public class AgregarProducto extends javax.swing.JPanel {
         }
     } catch (Exception e) {
         // Manejo de cualquier excepción que ocurra al actualizar las categorías.
-        JOptionPane.showMessageDialog(this, "Error al actualizar las categorías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(inicio, "Error al actualizar las categorías: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
 

@@ -5,27 +5,32 @@
 package app.Inicio;
 
 import app.Balances.PBalance;
-import app.Facturacion.AgregarCliente;
 import app.Facturacion.venta;
 import app.Inventario.*;
+import app.datos.usuario;
 import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.*;
 
+public final class Incio extends javax.swing.JFrame {
 
-public class Incio extends javax.swing.JFrame {
+    private usuario user;
 
-       /**
-     * Constructor que inicializa los componentes de la ventana y establece la fecha actual en la interfaz.
+    /**
+     * Constructor que inicializa los componentes de la ventana y establece la
+     * fecha actual en la interfaz.
+     *
+     * @param user
      */
-    public Incio() {
-        initComponents(); // Inicializa los componentes gráficos.
-        actualizarFecha(mensaje); // Actualiza la etiqueta con la fecha actual.
+    public Incio(usuario user) {
         this.setVisible(true); // Hace visible la ventana.
+        initComponents(); // Inicializa los componentes gráficos.
+        this.user = user;
+        actualizarFecha(mensaje); // Actualiza la etiqueta con la fecha actual.
         mostrar(new principal(this)); // Muestra el panel principal al iniciar la aplicación.
+        user.desactivarboton(balance);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +54,8 @@ public class Incio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        balance1 = new javax.swing.JButton();
         bienvenida = new javax.swing.JPanel();
         mensaje = new javax.swing.JLabel();
         contenido = new javax.swing.JPanel();
@@ -153,6 +160,24 @@ public class Incio extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/negocios (1).png"))); // NOI18N
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/negocios (1).png"))); // NOI18N
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        balance1.setBackground(new java.awt.Color(182, 11, 11));
+        balance1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        balance1.setForeground(new java.awt.Color(255, 255, 255));
+        balance1.setText("Configuración");
+        balance1.setBorder(null);
+        balance1.setContentAreaFilled(false);
+        balance1.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        balance1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        balance1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balance1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
@@ -160,20 +185,6 @@ public class Incio extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addComponent(titulo2)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
-                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addComponent(balance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(Venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(icono)
@@ -181,6 +192,20 @@ public class Incio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(titulo))
+            .addGroup(menuLayout.createSequentialGroup()
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(balance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(balance1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +227,11 @@ public class Incio extends javax.swing.JFrame {
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(balance, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balance1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(titulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(titulo)
@@ -268,11 +297,11 @@ public class Incio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioActionPerformed
-       mostrar(new inventario(this));
+        mostrar(new inventario(this));
     }//GEN-LAST:event_inventarioActionPerformed
 
     private void VentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentaActionPerformed
-       mostrar(new venta(this));
+        mostrar(new venta(this));
     }//GEN-LAST:event_VentaActionPerformed
 
     private void balanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balanceActionPerformed
@@ -282,45 +311,56 @@ public class Incio extends javax.swing.JFrame {
     private void inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioActionPerformed
         mostrar(new principal(this));
     }//GEN-LAST:event_inicioActionPerformed
-    
+
+    private void balance1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balance1ActionPerformed
+      mostrar(new configuracion(this));
+    }//GEN-LAST:event_balance1ActionPerformed
+
     /**
      * Método para mostrar un panel en el contenedor principal.
+     *
      * @param p El panel que se desea mostrar.
      */
     public void mostrar(JPanel p) {
         // Ajusta el tamaño y posición del panel.
         p.setSize(contenido.getWidth(), contenido.getHeight());
         p.setLocation(0, 0);
-        
+
         // Limpia el contenido actual y agrega el nuevo panel.
         contenido.removeAll();
         contenido.add(p, BorderLayout.CENTER);
-        
+
         // Refresca el contenedor para asegurar que los cambios sean visibles.
         contenido.revalidate();
         contenido.repaint();
     }
 
     /**
-     * Método estático que actualiza una etiqueta JLabel con la fecha actual formateada.
+     * Método estático que actualiza una etiqueta JLabel con la fecha actual
+     * formateada.
+     *
      * @param txtFecha El JLabel donde se mostrará la fecha.
      */
-    public static void actualizarFecha(JLabel txtFecha) {
+    public void actualizarFecha(JLabel txtFecha) {
         // Obtiene la fecha y hora actual.
         Calendar calendario = Calendar.getInstance();
-        
+
         // Formatea la fecha en el formato deseado.
         SimpleDateFormat formato = new SimpleDateFormat("EEEE dd 'de' MMMM 'del' yyyy");
         String fechaFormateada = formato.format(calendario.getTime());
 
         // Actualiza el texto del JLabel con la fecha formateada.
-        txtFecha.setText("Bienvenido, hoy es " + fechaFormateada);
+        txtFecha.setText("Bienvenido " + user.getUser() + ", hoy es " + fechaFormateada);
     }
 
+    public usuario getUser() {
+        return user;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Venta;
     private javax.swing.JButton balance;
+    private javax.swing.JButton balance1;
     private javax.swing.JPanel bienvenida;
     private javax.swing.JPanel contenido;
     private javax.swing.JPanel fondo;
@@ -331,6 +371,7 @@ public class Incio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel mensaje;
     private javax.swing.JPanel menu;
     private javax.swing.JLabel titulo;

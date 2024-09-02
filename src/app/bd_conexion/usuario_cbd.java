@@ -1,5 +1,6 @@
 package app.bd_conexion;
 
+import app.datos.pdf;
 import app.datos.usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -70,7 +71,7 @@ public class usuario_cbd {
     
     // Método para realizar el login de un usuario
     public usuario login(String user, String contraseña) {
-        String sql = "SELECT * FROM usuario WHERE user = ? AND contraseña = ?";
+        String sql = "SELECT * FROM usuario WHERE correo = ? AND contraseña = ?";
         usuario userLogged = null;
 
         try (Connection conn = getConnection();
@@ -92,7 +93,6 @@ public class usuario_cbd {
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error al realizar el login", e);
         }
-
         return userLogged;
     }
 

@@ -75,7 +75,12 @@ public final class AgregarVenta extends javax.swing.JPanel {
 
         txtclientes.setEditable(false);
         txtclientes.setText("txtcliente");
-
+        jButton3.setBackground(new java.awt.Color(177, 11, 11));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Volver");
+        jButton3.setMinimumSize(new java.awt.Dimension(100, 40)); // Tamaño mínimo
+        jButton3.setPreferredSize(new java.awt.Dimension(120, 50)); // Tamaño preferido
+        jButton3.setMaximumSize(new java.awt.Dimension(150, 60)); // Tamaño máximo
         jButton3.setText("Regresar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +116,10 @@ public final class AgregarVenta extends javax.swing.JPanel {
         txtdetalles.setColumns(20);
         txtdetalles.setRows(5);
         jScrollPane1.setViewportView(txtdetalles);
-
+        listaProducto.setAutoCreateRowSorter(true);
+        listaProducto.setBackground(new java.awt.Color(245, 22, 22));
+        listaProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        listaProducto.setForeground(new java.awt.Color(255, 255, 255));
         listaProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -312,9 +320,18 @@ public final class AgregarVenta extends javax.swing.JPanel {
             }
         });
 
+        listaProducto.setAutoCreateRowSorter(true);
         listaProducto.setBackground(new java.awt.Color(245, 22, 22));
+        listaProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        listaProducto.setForeground(new java.awt.Color(255, 255, 255));
         listaProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -450,65 +467,149 @@ public final class AgregarVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           String codigo = txtcodigo.getText();
-            String nombre = txtproducto.getSelectedItem().toString();
-            Integer cantidad = Integer.valueOf(txtcantidad.getText());
-            producto pppp = bdProducto.buscadoListarProductos(nombre, codigo);
-            if (pppp.getCantidad() >= cantidad) {
-            venta.setProductos(pppp, cantidad);
-            valors.add(pppp.getPrecio_entrada()*cantidad);
-            refrescarTablaProductos(venta.getProductos(),venta.getCantidades());
-            txtvalor.setText(String.valueOf(calcularNuevoValorTotal()));
-            
-            } else if(pppp.getCantidad() == 0){
-                JOptionPane.showConfirmDialog(inicio,"No hay existencias de este producto");
-            }else  {
-                // Si no hay suficiente cantidad, solicita una nueva cantidad al usuario
-                String nuevaCantidadStr = JOptionPane.showInputDialog(inicio, "No hay suficiente existencia del producto. Ingrese una nueva cantidad:");
+                    // Obtiene los valores de los campos de texto
+         String codigo = txtcodigo.getText();
+         String nombre = txtproducto.getSelectedItem().toString();
+         String cantidadStr = txtcantidad.getText();
 
-                if (nuevaCantidadStr != null && !nuevaCantidadStr.isEmpty()) {
-                    try {
-                        int nuevaCantidad = Integer.parseInt(nuevaCantidadStr);
-                        if (pppp.getCantidad() >= nuevaCantidad) {
-                            // Si la nueva cantidad es válida, procede con la venta
-                            venta.setProductos(pppp, nuevaCantidad);
-                            valors.add(pppp.getPrecio_entrada() * nuevaCantidad);
-                            refrescarTablaProductos(venta.getProductos(), venta.getCantidades());
-                             txtvalor.setText(String.valueOf(calcularNuevoValorTotal()));
-                        } else {
-                            // Si la nueva cantidad sigue siendo mayor que la existencia, muestra un mensaje de error
-                            JOptionPane.showMessageDialog(inicio,
-                                    "La cantidad ingresada sigue siendo mayor que la existencia disponible.",
-                                    "Error",
-                                    JOptionPane.ERROR_MESSAGE);
-                        }
-                    } catch (NumberFormatException e) {
-                        // Si la entrada no es un número válido, muestra un mensaje de error
-                        JOptionPane.showMessageDialog(inicio,
-                                "Por favor ingrese un número válido.",
-                                "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            }
+         // Verifica si los campos están vacíos
+         if (codigo.isEmpty() || nombre.isEmpty() || cantidadStr.isEmpty()) {
+             JOptionPane.showMessageDialog(inicio, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+             return; // Sale del método si alguno de los campos está vacío
+         }
+
+         // Intenta convertir la cantidad a un entero
+         Integer cantidad;
+         try {
+             cantidad = Integer.valueOf(cantidadStr);
+             if (cantidad <= 0) {
+                 JOptionPane.showMessageDialog(inicio, "La cantidad debe ser mayor que cero.", "Error", JOptionPane.ERROR_MESSAGE);
+                 return; // Sale del método si la cantidad no es válida
+             }
+         } catch (NumberFormatException e) {
+             JOptionPane.showMessageDialog(inicio, "La cantidad debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+             return; // Sale del método si la cantidad no es un número válido
+         }
+
+         // Busca el producto en la base de datos
+         producto pppp = bdProducto.buscadoListarProductos(nombre, codigo);
+
+         if (pppp == null) {
+             JOptionPane.showMessageDialog(inicio, "El producto no se encuentra en la base de datos.", "Error", JOptionPane.ERROR_MESSAGE);
+             return; // Sale del método si el producto no se encuentra
+         }
+
+         // Verifica la cantidad disponible
+         if (pppp.getCantidad() >= cantidad) {
+             venta.setProductos(pppp, cantidad);
+             valors.add(pppp.getPrecio_entrada() * cantidad);
+             refrescarTablaProductos(venta.getProductos(), venta.getCantidades());
+             txtvalor.setText(String.valueOf(calcularNuevoValorTotal()));
+         } else if (pppp.getCantidad() == 0) {
+             JOptionPane.showMessageDialog(inicio, "No hay existencias de este producto.", "Error", JOptionPane.ERROR_MESSAGE);
+         } else {
+             // Si no hay suficiente cantidad, solicita una nueva cantidad al usuario
+             String nuevaCantidadStr = JOptionPane.showInputDialog(inicio, "No hay suficiente existencia del producto. Ingrese una nueva cantidad:");
+
+             if (nuevaCantidadStr != null && !nuevaCantidadStr.isEmpty()) {
+                 try {
+                     int nuevaCantidad = Integer.parseInt(nuevaCantidadStr);
+                     if (nuevaCantidad > 0 && pppp.getCantidad() >= nuevaCantidad) {
+                         // Si la nueva cantidad es válida, procede con la venta
+                         venta.setProductos(pppp, nuevaCantidad);
+                         valors.add(pppp.getPrecio_entrada() * nuevaCantidad);
+                         refrescarTablaProductos(venta.getProductos(), venta.getCantidades());
+                         txtvalor.setText(String.valueOf(calcularNuevoValorTotal()));
+                     } else {
+                         // Si la nueva cantidad sigue siendo mayor que la existencia, muestra un mensaje de error
+                         JOptionPane.showMessageDialog(inicio,
+                                 "La cantidad ingresada sigue siendo mayor que la existencia disponible.",
+                                 "Error",
+                                 JOptionPane.ERROR_MESSAGE);
+                     }
+                 } catch (NumberFormatException e) {
+                     // Si la entrada no es un número válido, muestra un mensaje de error
+                     JOptionPane.showMessageDialog(inicio,
+                             "Por favor ingrese un número válido.",
+                             "Error",
+                             JOptionPane.ERROR_MESSAGE);
+                 }
+             } else {
+                 // Si el usuario no ingresa una nueva cantidad, muestra un mensaje de advertencia
+                 JOptionPane.showMessageDialog(inicio, "No se ha ingresado una nueva cantidad.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+             }
+         }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     venta.setCliente(bdVenta.ListarCliente(txtcliente.getSelectedItem().toString()));
-     venta.setCodigo(txtcodigof.getText());
-     venta.setFecha_realizado(LocalDate.now());
-     venta.setTipo_venta(1);
-     venta.setValor(Double.valueOf(txtvalor.getText()));
-     Integer i = 0;
-     for(producto pp : venta.getProductos()){
-                pp = bdProducto.buscarProductoPorId(bdProducto.obtenerIdProducto(pp.getCodigo()));
-                pp.setCantidad(pp.getCantidad() - venta.getCantidades().get(i));
-                bdProducto.ActualizarProducto( pp );
-                i++;
-            }
-     bdVenta.registrarVenta(venta);
-     inicio.mostrar(new venta(inicio));
-     
+            // Obtiene los valores de los campos
+       String clienteNombre = txtcliente.getSelectedItem().toString();
+       String codigoFactura = txtcodigof.getText();
+       String valorStr = txtvalor.getText();
+
+       // Verifica si los campos están vacíos
+       if (clienteNombre.isEmpty() || codigoFactura.isEmpty() || valorStr.isEmpty()) {
+           JOptionPane.showMessageDialog(inicio, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+           return; // Sale del método si alguno de los campos está vacío
+       }
+
+       // Intenta convertir el valor a un Double
+       Double valor;
+       try {
+           valor = Double.valueOf(valorStr);
+           if (valor <= 0) {
+               JOptionPane.showMessageDialog(inicio, "El valor debe ser mayor que cero.", "Error", JOptionPane.ERROR_MESSAGE);
+               return; // Sale del método si el valor no es válido
+           }
+       } catch (NumberFormatException e) {
+           JOptionPane.showMessageDialog(inicio, "El valor debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+           return; // Sale del método si el valor no es un número válido
+       }
+
+       // Verifica si hay productos en la venta
+       if (venta.getProductos().isEmpty() || venta.getCantidades().isEmpty()) {
+           JOptionPane.showMessageDialog(inicio, "Debe agregar al menos un producto a la venta.", "Error", JOptionPane.ERROR_MESSAGE);
+           return; // Sale del método si no hay productos en la venta
+       }
+
+       // Actualiza la información de los productos y realiza la venta
+       Integer i = 0;
+       for (producto pp : venta.getProductos()) {
+           // Obtiene el producto actualizado desde la base de datos
+           pp = bdProducto.buscarProductoPorId(bdProducto.obtenerIdProducto(pp.getCodigo()));
+
+           // Verifica si la cantidad disponible es suficiente
+           if (pp.getCantidad() < venta.getCantidades().get(i)) {
+               JOptionPane.showMessageDialog(inicio, "No hay suficiente existencia del producto: " + pp.getNombre(), "Error", JOptionPane.ERROR_MESSAGE);
+               return; // Sale del método si no hay suficiente existencia
+           }
+
+           // Actualiza la cantidad del producto
+           pp.setCantidad(pp.getCantidad() - venta.getCantidades().get(i));
+           bdProducto.ActualizarProducto(pp);
+           i++;
+       }
+
+       // Registra la venta en la base de datos
+       venta.setCliente(bdVenta.ListarCliente(clienteNombre));
+       venta.setCodigo(codigoFactura);
+       venta.setFecha_realizado(LocalDate.now());
+       venta.setTipo_venta(1);
+       venta.setValor(valor);
+
+       bdVenta.registrarVenta(venta);
+       detalle= "Venta realizado para " + venta.getCliente().getNombre();
+            
+       balance.setDetalles(detalle);
+       balance.setFecha(LocalDate.now());
+       balance.setTipo("Ingreso");
+       balance.setValor(venta.getValor());
+       bcdb.registrarBalance(balance);
+
+       // Muestra la interfaz de ventas
+       inicio.mostrar(new venta(inicio));
+
     }//GEN-LAST:event_jButton2ActionPerformed
      public void refrescarTablaProductos(ArrayList<producto> productoaa,ArrayList<Integer> cantidades){
         modelo.setRowCount(0); // Limpia la tabla antes de actualizarla

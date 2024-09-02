@@ -83,7 +83,7 @@ public class pdf {
             e.printStackTrace(); // Manejo de excepciones
         } finally {
             documento.close();
-            // EnviarCorreo(direccionpdf, venta);
+             EnviarCorreo(direccionpdf, venta);
         }
 
     } else if (ventas instanceof Ventas) {
@@ -113,7 +113,7 @@ public class pdf {
             e.printStackTrace(); // Manejo de excepciones
         } finally {
             documento.close();
-            // EnviarCorreo(direccionpdf, venta);
+             EnviarCorreo(direccionpdf, venta);
         }
     }
     }
@@ -321,11 +321,17 @@ public class pdf {
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(venta.getCliente().getCorreo()));
 
         // Asunto
-        message.setSubject("Factura de la panadería Juana Rangel");
+        message.setSubject("¡Gracias por tu compra en Panadería Juana Rangel!");
 
         // Crear el contenido del mensaje
         MimeBodyPart mensajeCuerpo = new MimeBodyPart();
-        mensajeCuerpo.setText("Adjunto la factura correspondiente.");
+        String contenido = "Estimado/a " + venta.getCliente().getNombre() + ",\n\n" +
+                "¡Gracias por confiar en Panadería Juana Rangel! Adjuntamos a este correo la factura correspondiente a tu reciente compra.\n\n" +
+                "Si tienes alguna pregunta o necesitas asistencia adicional, no dudes en contactarnos.\n\n" +
+                "¡Esperamos verte pronto en nuestra panadería!\n\n" +
+                "Atentamente,\n" +
+                "El equipo de Panadería Juana Rangel";
+        mensajeCuerpo.setText(contenido);
 
         // Crear el archivo adjunto
         MimeBodyPart archivoAdjunto = new MimeBodyPart();
@@ -344,9 +350,81 @@ public class pdf {
         // Enviar el mensaje
         Transport.send(message);
         System.out.println("Correo enviado exitosamente.");
-      } catch (MessagingException e) {
+    } catch (MessagingException e) {
         e.printStackTrace();
     }
-}
+    }
+    
+    
+    public void EnviarCorreo(usuario nuevoUsuario) {
+    // Configuración del servidor SMTP
+    String host = "smtp.gmail.com";
+    final String user = "dariotarazona10@gmail.com"; // Tu correo electrónico
+    final String password = "lxmxqqgtobrqeceo"; // Tu contraseña de Gmail o contraseña de aplicación
+
+    // Configuración de propiedades
+    Properties properties = new Properties();
+    properties.put("mail.smtp.host", host);
+    properties.put("mail.smtp.port", "587");
+    properties.put("mail.smtp.starttls.enable", "true"); // Habilita STARTTLS
+    properties.put("mail.smtp.auth", "true"); // Requiere autenticación
+
+    // Obtener la sesión
+    Session session = Session.getInstance(properties, new Authenticator() {
+        @Override
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(user, password);
+        }
+    });
+
+    try {
+        // Crear un mensaje
+        MimeMessage message = new MimeMessage(session);
+
+        // De: dirección
+        message.setFrom(new InternetAddress(user));
+
+        // A: dirección
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(nuevoUsuario.getCorreo()));
+
+        // Asunto
+        message.setSubject("Bienvenido a la Panadería Juana Rangel");
+
+        // Crear el contenido del mensaje
+        MimeBodyPart mensajeCuerpo = new MimeBodyPart();
+        String contenidoMensaje = String.format("""
+                                                Hola %s,
+                                                
+                                                Bienvenido a la Panader\u00eda Juana Rangel.
+                                                
+                                                Tus credenciales de acceso son:
+                                                Usuario: %s
+                                                Contrase\u00f1a: %s
+                                                
+                                                Por favor, cambia tu contrase\u00f1a despu\u00e9s de iniciar sesi\u00f3n por primera vez.
+                                                
+                                                Saludos,
+                                                Equipo de la Panader\u00eda Juana Rangel""",
+            nuevoUsuario.getEmpleado().getNombre(), // Obtiene el nombre del empleado
+            nuevoUsuario.getUser(),
+            nuevoUsuario.getContraseña()
+        );
+        mensajeCuerpo.setText(contenidoMensaje);
+
+        // Crear el contenedor del mensaje
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(mensajeCuerpo);
+
+        // Configurar el mensaje
+        message.setContent(multipart);
+
+        // Enviar el mensaje
+        Transport.send(message);
+        System.out.println("Correo de bienvenida enviado exitosamente.");
+    } catch (MessagingException e) {
+        e.printStackTrace();
+    }
+    }
+
     
 }

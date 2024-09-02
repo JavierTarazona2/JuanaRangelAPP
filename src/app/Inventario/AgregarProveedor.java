@@ -280,14 +280,23 @@ public class AgregarProveedor extends javax.swing.JPanel {
         jButton22.setBackground(new java.awt.Color(182, 11, 11));
         jButton22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton22.setForeground(new java.awt.Color(255, 255, 255));
-        jButton22.setText("Descartar");
+        
         jButton22.setBorder(null);
         jButton22.setBorderPainted(false);
+        jButton22.setText("Descartar");
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton22ActionPerformed(evt);
             }
         });
+        
+        txtLista_pedido.setAutoCreateRowSorter(true);
+
+        txtLista_pedido.setBackground(new java.awt.Color(245, 22, 22));
+
+        txtLista_pedido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        txtLista_pedido.setForeground(new java.awt.Color(255, 255, 255));
 
         txtLista_pedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -395,7 +404,22 @@ public class AgregarProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_txtnombreActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        try{
+            
         
+       
+         // Validar datos antes de realizar la actualización
+        ValidarDatos();
+         proveedor pr =  new proveedor();
+        pr.setNombre(txtnombre.getText());
+        pr.setCorreo(txtcorreo.getText());
+        pr.setTelefono(txttelefono.getText());
+        
+        pcbd.RegistrarProveedor(pr);
+        inicio.mostrar(new inventario(inicio));
+        }catch(Exception e){
+            
+        }
     }//GEN-LAST:event_jButton11ActionPerformed
     
     private void bactualizarActionPerformed(java.awt.event.ActionEvent evt) {                                            

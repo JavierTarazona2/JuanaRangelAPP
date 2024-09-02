@@ -73,6 +73,7 @@ import javax.swing.table.DefaultTableModel;
         pedidoCliente.setBackground(new java.awt.Color(245, 22, 22));
         pedidoCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pedidoCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        pedidoCliente.setForeground(new java.awt.Color(255, 255, 255));
         pedidoCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -107,6 +108,7 @@ import javax.swing.table.DefaultTableModel;
         pedidoProveedor.setBackground(new java.awt.Color(245, 22, 22));
         pedidoProveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pedidoProveedor.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        pedidoProveedor.setForeground(new java.awt.Color(255, 255, 255));
         pedidoProveedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

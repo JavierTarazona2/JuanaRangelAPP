@@ -49,6 +49,8 @@ public final class inventario extends javax.swing.JPanel {
         refrescarTablaProveedores(prcbd.ListadoProveedores());
         refrescarTablaPedidos(prcbd.ListadoPedidos());
         refrescarTablaReportes(prcbd.ListarReportes());
+        
+        verificarUser();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -529,6 +531,7 @@ public final class inventario extends javax.swing.JPanel {
         );
 
         menu_inventario.getAccessibleContext().setAccessibleName("Productos\n");
+        menu_inventario.getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtproveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproveedorActionPerformed
@@ -585,10 +588,10 @@ inicio.mostrar(new AgregarProducto(inicio));    }//GEN-LAST:event_jButton2Action
             AgregarProveedor AP = new AgregarProveedor(inicio, clienteSeleccionado);
             inicio.mostrar(AP);
         } else {
-            JOptionPane.showMessageDialog(this, "Cliente no encontrado.");
+            JOptionPane.showMessageDialog(inicio, "Cliente no encontrado.");
         }
     } else {
-        JOptionPane.showMessageDialog(this, "Seleccione una fila en la tabla.");
+        JOptionPane.showMessageDialog(inicio, "Seleccione una fila en la tabla.");
     }
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -715,6 +718,13 @@ inicio.mostrar(new AgregarProducto(inicio));    }//GEN-LAST:event_jButton2Action
             };
             modelo3.addRow(fila);
         }
+    }
+    
+     private void verificarUser() {
+        if(inicio.getUser().getAdministrador() == false){
+        menu_inventario.setEnabledAt(menu_inventario.indexOfTab("Proveedores"), false);
+        }
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Reportes;

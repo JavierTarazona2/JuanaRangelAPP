@@ -52,6 +52,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
         mostrarProveedor(sdds);
         configurarEstadoEntrega(sdds.getEstado());
         verificar = sdds.getEstado();
+        inicio.getUser().desactivarboton(BActualizar);
     }
 
     
@@ -134,9 +135,15 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 153, 90, 30));
 
+        txtProductos.setAutoCreateRowSorter(true);
         txtProductos.setBackground(new java.awt.Color(245, 22, 22));
+        txtProductos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtProductos.setForeground(new java.awt.Color(255, 255, 255));
         txtProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -227,7 +234,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
   @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponentes() {
-
+    // Inicialización de componentes
     jPanel1 = new javax.swing.JPanel();
     jLabel1 = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
@@ -255,13 +262,17 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
 
     jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-    jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+    jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); 
     jLabel1.setText("Pedido Realizado");
 
-    jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+    jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); 
     jLabel2.setText("Proveedor a cargo del pedido:");
-
+    
     // Configuración de la tabla
+    txtProductos.setAutoCreateRowSorter(true);
+    txtProductos.setBackground(new java.awt.Color(245, 22, 22));
+    txtProductos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    txtProductos.setForeground(new java.awt.Color(255, 255, 255));
     txtProductos.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
@@ -283,19 +294,45 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
     });
     jScrollPane1.setViewportView(txtProductos);
 
+    // Configuración de los botones con tamaño aumentado
+    BActualizar.setBackground(new java.awt.Color(177, 11, 11));
+    BActualizar.setForeground(new java.awt.Color(255, 255, 255));
     BActualizar.setText("Actualizar");
+    BActualizar.setMinimumSize(new java.awt.Dimension(100, 40)); // Tamaño mínimo
+    BActualizar.setPreferredSize(new java.awt.Dimension(120, 50)); // Tamaño preferido
+    BActualizar.setMaximumSize(new java.awt.Dimension(150, 60)); // Tamaño máximo
     BActualizar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             BActualizarActionPerformed(evt);
         }
     });
 
+    BVolver.setBackground(new java.awt.Color(177, 11, 11));
+    BVolver.setForeground(new java.awt.Color(255, 255, 255));
     BVolver.setText("Volver");
+    BVolver.setMinimumSize(new java.awt.Dimension(100, 40)); // Tamaño mínimo
+    BVolver.setPreferredSize(new java.awt.Dimension(120, 50)); // Tamaño preferido
+    BVolver.setMaximumSize(new java.awt.Dimension(150, 60)); // Tamaño máximo
     BVolver.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             BVolverActionPerformed(evt);
         }
     });
+
+    BEliminar.setBackground(new java.awt.Color(177, 11, 11));
+    BEliminar.setForeground(new java.awt.Color(255, 255, 255));
+    BEliminar.setText("Eliminar");
+    BEliminar.setMinimumSize(new java.awt.Dimension(100, 40)); // Tamaño mínimo
+    BEliminar.setPreferredSize(new java.awt.Dimension(120, 50)); // Tamaño preferido
+    BEliminar.setMaximumSize(new java.awt.Dimension(150, 60)); // Tamaño máximo
+    BEliminar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            BEliminarActionPerformed(evt);
+        }
+    });
+
+    // Continuar con la configuración de otros componentes y layout...
+
 
     jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
     jLabel5.setText("Fecha de entrega del pedido");
@@ -344,13 +381,6 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
 
     jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
     jLabel10.setText("Para los productos no entregados en el pedido, seleccione y luego oprima el botón de eliminar.");
-
-    BEliminar.setText("Eliminar");
-    BEliminar.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            BEliminarActionPerformed(evt);
-        }
-    });
 
     // Configuración del diseño (Layout)
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -495,9 +525,9 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
             inicio.mostrar(new inventario(inicio));
 
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(inicio, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(inicio, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -522,9 +552,9 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
             refrescarTablaProductos(pe.getProductos(), pe.getCantidades());
 
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(inicio, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(inicio, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
         
@@ -568,7 +598,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
         refrescarTablaProductos(pe.getProductos(), pe.getCantidades());
         ValorE.setText(String.valueOf(calcularNuevoValorTotal()));
     } else {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto para eliminar.", "Error", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(inicio, "Por favor, seleccione un producto para eliminar.", "Error", JOptionPane.WARNING_MESSAGE);
     }
     }
 
@@ -620,7 +650,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
             modelo.addRow(fila);
         }
     } else {
-        JOptionPane.showMessageDialog(this, "La cantidad de productos y cantidades no coincide.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(inicio, "La cantidad de productos y cantidades no coincide.", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }
 
@@ -636,7 +666,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
             txtproveedor.addItem(p.getNombre());
         }
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al actualizar los proveedores: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(inicio, "Error al actualizar los proveedores: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
     }
 
@@ -684,6 +714,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
     }
     private void verificarEstado(){
         if(verificar.equals(false)){
+            if(entregado.isSelected()){
             // Detallar el pedido en el balance
             balance.setDetalles("Pedido Realizado a " + pe.getproveedor().getNombre());
             balance.setFecha(LocalDate.now());
@@ -700,7 +731,7 @@ public final class Pedido_proveedor extends javax.swing.JPanel {
                 pcdb.ActualizarProducto( pp);
                 i++;
             }
-        }
+        }}
     }
     
     private javax.swing.JButton BActualizar;

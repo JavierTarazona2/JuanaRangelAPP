@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import app.datos.Ventas;
 import app.datos.cliente;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -25,8 +26,8 @@ public class AgregarCliente extends javax.swing.JPanel {
         
 
     }
-    public AgregarCliente(cliente cliente) {
-        
+    public AgregarCliente(Incio inicio ,cliente cliente) {
+        this.inicio = inicio;
     initComponentes(); 
     modelo2 = (DefaultTableModel) ComprasClientes.getModel();
     this.modificado = cliente;
@@ -295,11 +296,7 @@ public class AgregarCliente extends javax.swing.JPanel {
     jButton11.setText("Actualizar");
     jButton11.setBorder(null);
     jButton11.setBorderPainted(false);
-    jButton11.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton11ActionPerformed(evt);
-        }
-    });
+    jButton11.addActionListener(this::jButton11ActionPerformed);
 
     jButton22.setBackground(new java.awt.Color(182, 11, 11));
     jButton22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -307,18 +304,10 @@ public class AgregarCliente extends javax.swing.JPanel {
     jButton22.setText("Descartar");
     jButton22.setBorder(null);
     jButton22.setBorderPainted(false);
-    jButton22.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton22ActionPerformed(evt);
-        }
-    });
+    jButton22.addActionListener(this::jButton22ActionPerformed);
 
     txtdireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    txtdireccion.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtdireccionActionPerformed(evt);
-        }
-    });
+    txtdireccion.addActionListener(this::txtdireccionActionPerformed);
 
     txtprecio1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
     txtprecio1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -326,11 +315,7 @@ public class AgregarCliente extends javax.swing.JPanel {
 
     txtidentificacion.setEditable(false);
     txtidentificacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    txtidentificacion.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtidentificacionActionPerformed(evt);
-        }
-    });
+    txtidentificacion.addActionListener(this::txtidentificacionActionPerformed);
 
     // Inicializar el modelo de la tabla
     ComprasClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -497,15 +482,40 @@ public class AgregarCliente extends javax.swing.JPanel {
         }
     }
 
-    private cliente RegistroCliente(){
-        cliente c = new cliente();
-        c.setNombre(txtnombre.getText());
-        c.setCorreo(txtcorreo.getText());
-        c.setTelefono(txttelefono.getText());
-        c.setIdentificacion(Integer.valueOf(txtidentificacion.getText()));
-        c.setDireccion(txtdireccion.getText());
-        return c;
-    }
+    private cliente RegistroCliente() {
+      // Obtener datos de los campos de texto
+      String nombre = txtnombre.getText().trim();
+      String correo = txtcorreo.getText().trim();
+      String telefono = txttelefono.getText().trim();
+      String identificacionStr = txtidentificacion.getText().trim();
+      String direccion = txtdireccion.getText().trim();
+
+      // Validar que los campos no estén vacíos
+      if (nombre.isEmpty() || correo.isEmpty() || telefono.isEmpty() || identificacionStr.isEmpty() || direccion.isEmpty()) {
+          JOptionPane.showMessageDialog(inicio, "Todos los campos deben estar completos.", "Error", JOptionPane.ERROR_MESSAGE);
+          return null; // O retornar una instancia de cliente con valores por defecto si es necesario
+      }
+
+      // Validar identificación
+      Integer identificacion;
+      try {
+          identificacion = Integer.valueOf(identificacionStr);
+      } catch (NumberFormatException e) {
+          JOptionPane.showMessageDialog(inicio, "La identificación debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+          return null; // O retornar una instancia de cliente con valores por defecto si es necesario
+      }
+
+      // Crear y configurar el objeto cliente
+      cliente c = new cliente();
+      c.setNombre(nombre);
+      c.setCorreo(correo);
+      c.setTelefono(telefono);
+      c.setIdentificacion(identificacion);
+      c.setDireccion(direccion);
+
+      return c;
+  }
+
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable ComprasClientes = new JTable();
     // Variables declaration - do not modify//GEN-BEGIN:variables

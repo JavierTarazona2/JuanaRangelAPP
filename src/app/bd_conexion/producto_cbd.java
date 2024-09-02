@@ -204,7 +204,7 @@ public class producto_cbd {
      */
     
     public producto buscadoListarProductos(String nombreProducto, String codigo_producto) {
-        ArrayList<producto> productos = new ArrayList<>();
+        producto p = new producto();
         String sql = "SELECT codigo, nombre, medida, id_categoria, precio_entrada, precio_venta, fecha_vencimiento, fecha_ingreso, cantidad FROM producto WHERE nombre = ? OR codigo = ?";
         Map<Integer, String> categoriaCache = new HashMap<>();
 
@@ -220,7 +220,7 @@ public class producto_cbd {
                     String categoriaNombre = categoriaCache.computeIfAbsent(id_categoria, id -> obtenerNombreCategoria(id, conn));
 
                     // Crear el objeto producto
-                    producto p = new producto();
+                    
                     p.setCodigo(rs.getString("codigo"));
                     p.setNombre(rs.getString("nombre"));
                     p.setMedida(rs.getString("medida"));
@@ -230,8 +230,6 @@ public class producto_cbd {
                     p.setFeche_vencimiento(rs.getDate("fecha_vencimiento").toLocalDate());
                     p.setFecha_ingreso(rs.getDate("fecha_ingreso").toLocalDate());
                     p.setCantidad(rs.getInt("cantidad"));
-
-                    productos.add(p);
                 }
             }
         } catch (SQLException ex) {
@@ -239,7 +237,7 @@ public class producto_cbd {
         }
 
         // Verificar si la lista está vacía y retornar el primer producto si existe
-        return productos.isEmpty() ? null : productos.get(0);
+        return p;
     }
 
     

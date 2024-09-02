@@ -5,8 +5,11 @@ import app.Inventario.*;
 import app.Inicio.Incio;
 import app.bd_conexion.*;
 import app.datos.empleado;
+import app.datos.pdf;
 import app.datos.proveedor;
+import app.datos.usuario;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +20,7 @@ public class AgregarEmpleado extends javax.swing.JPanel {
     private Incio inicio;
     public empleado_cbd ecbd = new empleado_cbd();
     public empleado empleado;
+    private usuario_cbd user = new usuario_cbd();
     
     public AgregarEmpleado(Incio inicio) {
         this.inicio = inicio;
@@ -53,6 +57,7 @@ public class AgregarEmpleado extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        cuentau = new javax.swing.JCheckBox();
 
         setMinimumSize(new java.awt.Dimension(800, 650));
         setPreferredSize(new java.awt.Dimension(800, 650));
@@ -176,6 +181,14 @@ public class AgregarEmpleado extends javax.swing.JPanel {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Sueldo");
 
+        cuentau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cuentau.setText("Crear usuario para el empleado");
+        cuentau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cuentauActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -183,10 +196,6 @@ public class AgregarEmpleado extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(246, 246, 246))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +216,13 @@ public class AgregarEmpleado extends javax.swing.JPanel {
                             .addComponent(txtingreso)
                             .addComponent(txtnacimiento, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtsueldo, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(60, 60, 60))))
+                        .addGap(60, 60, 60))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(268, 268, 268)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cuentau)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(246, 246, 246))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(211, 211, 211)
                 .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,11 +267,13 @@ public class AgregarEmpleado extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtsueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(30, 30, 30)
+                .addGap(19, 19, 19)
+                .addComponent(cuentau)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -568,46 +585,106 @@ public class AgregarEmpleado extends javax.swing.JPanel {
     }//GEN-LAST:event_txtnombreActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-       // registro del proveedor
-        try{
-        ValidarDatos();
-        
-        empleado e = new empleado();
-        
-        e.setNombre(txtnombre.getText());
-        
-        e.setTelefono(txttelefono.getText());
-        
-        e.setCorreo(txtcorreo.getText());
-        
-        e.setDireccion(txtdirecion.getText());
-        
-        e.setIdentificacion(Integer.valueOf(txtidentificacion.getText()));
-        
-        e.setFecha_ingreso(LocalDate.parse(txtingreso.getText()));
-        
-        e.setFecha_nacimiento(LocalDate.parse(txtnacimiento.getText()));
-        
-        e.setSueldo(Double.valueOf(txtsueldo.getText()));
-        
-        e.setEstado(true);
-        
-        e.setEdad();
-        
-        
-        ecbd.registrarEmpleado(e);
-        inicio.mostrar(new venta(inicio));
-        //manejo de exepciones
-        }catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+       // Registro del proveedor
+try {
+    // Validar los datos ingresados
+    ValidarDatos();
+
+    // Obtiene y valida los datos del empleado
+    String nombre = txtnombre.getText().trim();
+    String telefono = txttelefono.getText().trim();
+    String correo = txtcorreo.getText().trim();
+    String direccion = txtdirecion.getText().trim();
+    String identificacionStr = txtidentificacion.getText().trim();
+    String fechaIngresoStr = txtingreso.getText().trim();
+    String fechaNacimientoStr = txtnacimiento.getText().trim();
+    String sueldoStr = txtsueldo.getText().trim();
+
+    // Verificar campos vacíos
+    if (nombre.isEmpty() || telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty() ||
+        identificacionStr.isEmpty() || fechaIngresoStr.isEmpty() || fechaNacimientoStr.isEmpty() || sueldoStr.isEmpty()) {
+        JOptionPane.showMessageDialog(inicio, "Todos los campos deben estar completos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Validar identificación
+    Integer identificacion;
+    try {
+        identificacion = Integer.valueOf(identificacionStr);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(inicio, "La identificación debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Validar fechas
+    LocalDate fechaIngreso;
+    LocalDate fechaNacimiento;
+    try {
+        fechaIngreso = LocalDate.parse(fechaIngresoStr);
+        fechaNacimiento = LocalDate.parse(fechaNacimientoStr);
+    } catch (DateTimeParseException e) {
+        JOptionPane.showMessageDialog(this, "Las fechas deben estar en el formato correcto (YYYY-MM-DD).", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Validar sueldo
+    Double sueldo;
+    try {
+        sueldo = Double.valueOf(sueldoStr);
+        if (sueldo <= 0) {
+            JOptionPane.showMessageDialog(this, "El sueldo debe ser un número mayor que cero.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El sueldo debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Crear y configurar el objeto empleado
+    empleado e = new empleado();
+    e.setNombre(nombre);
+    e.setTelefono(telefono);
+    e.setCorreo(correo);
+    e.setDireccion(direccion);
+    e.setIdentificacion(identificacion);
+    e.setFecha_ingreso(fechaIngreso);
+    e.setFecha_nacimiento(fechaNacimiento);
+    e.setSueldo(sueldo);
+    e.setEstado(true);
+    e.setEdad();
+
+    // Registrar el usuario si se ha seleccionado la opción
+    if (cuentau.isSelected()) {
+        usuario nuevoUsuario = new usuario();
+        nuevoUsuario.setUser(e.getNombre());
+        nuevoUsuario.setContraseña("c" + e.getIdentificacion() + e.getEdad());
+        nuevoUsuario.setCorreo(e.getCorreo());
+        nuevoUsuario.setEmpleado(e);
+        nuevoUsuario.setAdministrador(false);
+
+        usuario_cbd bd = new usuario_cbd();
+        bd.registrarUsuario(nuevoUsuario);
+
+        pdf pdf = new pdf();
+        pdf.EnviarCorreo(nuevoUsuario);
+    }
+
+    // Registrar el empleado
+    ecbd.registrarEmpleado(e);
+
+    // Mostrar la interfaz de ventas
+    inicio.mostrar(new venta(inicio));
+
+} catch (IllegalArgumentException e) {
+    JOptionPane.showMessageDialog(inicio, e.getMessage(), "Error de validación", JOptionPane.ERROR_MESSAGE);
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(inicio, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+}
+
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        inicio.mostrar(new inventario(inicio));
+        inicio.mostrar(new venta(inicio));
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void txtdirecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdirecionActionPerformed
@@ -629,6 +706,10 @@ public class AgregarEmpleado extends javax.swing.JPanel {
     private void txtsueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsueldoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtsueldoActionPerformed
+
+    private void cuentauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuentauActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cuentauActionPerformed
 
     private void BActualizarActionPerformed(java.awt.event.ActionEvent evt){
         
@@ -677,6 +758,7 @@ public class AgregarEmpleado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox cuentau;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton22;
     private javax.swing.JLabel jLabel1;

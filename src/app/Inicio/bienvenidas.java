@@ -4,20 +4,27 @@
  */
 package app.Inicio;
 
-import javax.swing.JFrame;
+import app.bd_conexion.usuario_cbd;
+import app.datos.usuario;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 
 /**
  *
  * @author javie
  */
 public class bienvenidas extends javax.swing.JPanel {
-    private JFrame bienv;
+    private final bienvenida bienv;
+    private usuario_cbd bd_usuario = new usuario_cbd();
     /**
      * Creates new form bienvenidas
+     * @param bienv
      */
-    public bienvenidas(JFrame bienv) {
+    public bienvenidas(bienvenida bienv) {
         this.bienv = bienv;
         initComponents();
+        
     }
 
     /**
@@ -31,15 +38,15 @@ public class bienvenidas extends javax.swing.JPanel {
 
         jButton2 = new javax.swing.JButton();
         titulo1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         titulo4 = new javax.swing.JLabel();
         titulo = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
         titulo2 = new javax.swing.JLabel();
         titulo3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtuser = new javax.swing.JTextField();
+        txtcontraseña = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(700, 500));
@@ -65,8 +72,8 @@ public class bienvenidas extends javax.swing.JPanel {
         titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo1.setText("Juana Rangel");
         add(titulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 240, 50));
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 400, 10));
-        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 400, 10));
+        add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 400, 10));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 400, 10));
 
         titulo4.setBackground(new java.awt.Color(0, 0, 0));
         titulo4.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
@@ -78,6 +85,7 @@ public class bienvenidas extends javax.swing.JPanel {
         titulo.setBackground(new java.awt.Color(0, 0, 0));
         titulo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         titulo.setText("Contraseña");
+        titulo.setName(""); // NOI18N
         add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 260, 50));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo_bienvenida.jpg"))); // NOI18N
@@ -94,31 +102,62 @@ public class bienvenidas extends javax.swing.JPanel {
         titulo3.setText("Iniciar Sesión");
         add(titulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 260, 50));
 
-        jTextField1.setBorder(null);
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 410, 40));
+        txtuser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtuser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtuser.setBorder(null);
+        add(txtuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 410, 40));
 
-        jTextField2.setBorder(null);
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 410, 40));
+        txtcontraseña.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtcontraseña.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtcontraseña.setText("jPasswordField1");
+        txtcontraseña.setAutoscrolls(false);
+        txtcontraseña.setBorder(null);
+        add(txtcontraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 302, 410, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       bienv.dispose();
-       Incio inicio = new Incio();
+// Obtiene el texto del campo de nombre de usuario
+    String correo = txtuser.getText();
+    
+    // Obtiene la contraseña ingresada como un array de caracteres
+    char[] contraseñaArray = txtcontraseña.getPassword();
+    String contraseña = new String(contraseñaArray);
+
+    // Verifica si los campos están vacíos
+    if (correo.isEmpty()) {
+        JOptionPane.showMessageDialog(bienv, "El nombre de usuario no puede estar vacío.");
+        return; // Salir del método si el nombre de usuario está vacío
+    }
+
+    if (contraseña.isEmpty()) {
+        JOptionPane.showMessageDialog(bienv, "La contraseña no puede estar vacía.");
+        return; // Salir del método si la contraseña está vacía
+    }
+
+    // Intentar autenticar al usuario
+    usuario user = bd_usuario.login(correo, contraseña);
+    if (user != null) {
+        // Si las credenciales son correctas, proceder
+        Incio inicio = new Incio(user);
+        bienv.dispose();
+    } else {
+        // Si las credenciales son incorrectas, mostrar mensaje de error
+        JOptionPane.showMessageDialog(bienv, "Credenciales incorrectas");
+    }
        
     }//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulo1;
     private javax.swing.JLabel titulo2;
     private javax.swing.JLabel titulo3;
     private javax.swing.JLabel titulo4;
+    private javax.swing.JPasswordField txtcontraseña;
+    private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }
