@@ -22,8 +22,8 @@ public final class bienvenida extends javax.swing.JFrame {
         initComponents();
         mostrar(new bienvenidas(this));
         // Cargar el ícono
-         ImageIcon icono = new ImageIcon(getClass().getResource("/imagenes/GALLETAFONDOJAVIEE.png"));
-        setIconImage(icono.getImage());
+//         ImageIcon icono = new ImageIcon(getClass().getResource("C:\\Users\\javie\\Downloads\\JuanaRangelapp\\JuanaRangelapp\\src\\imagenes\\GALLETAFONDOJAVIEE.png"));
+//        setIconImage(icono.getImage());
     }
 
     

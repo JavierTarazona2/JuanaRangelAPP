@@ -194,6 +194,51 @@ public class producto_cbd {
 
         return productos;
     }
+    
+    /**
+    * Método para obtener una lista de productos vendidos.
+    * Consulta la tabla `producto_venta` para obtener el ID del producto y la cantidad vendida,
+    * y luego busca los detalles del producto usando su ID.
+    * 
+    * @return ArrayList producto Lista de productos vendidos con sus cantidades.
+    */
+   public ArrayList<producto> ProductosVendidos() {
+       // Crear una lista para almacenar los productos vendidos
+       ArrayList<producto> productos = new ArrayList<>();
+       
+       // Consulta SQL para obtener el ID del producto y la suma de las cantidades vendidas desde la tabla producto_venta
+        String sql = "SELECT id_producto, SUM(cantidad_producto) AS total_cantidad FROM producto_venta GROUP BY id_producto";
+
+       // Usar un bloque try-with-resources para gestionar automáticamente los recursos de base de datos
+       try (Connection conn = getConnection(); // Obtener la conexión a la base de datos
+            PreparedStatement ps = conn.prepareStatement(sql)) { // Preparar la declaración SQL
+
+           // Ejecutar la consulta y obtener el resultado
+           try (ResultSet rs = ps.executeQuery()) {
+               // Recorrer cada fila del resultado
+               while (rs.next()) {
+                   // Obtener el ID del producto de la fila actual
+                   Integer id_producto = rs.getInt("id_producto");
+
+                   // Buscar los detalles del producto usando su ID
+                   producto p = buscarProductoPorId(id_producto);
+
+                   // Establecer la cantidad del producto vendida desde el resultado de la consulta
+                   p.setCantidad(rs.getInt("total_cantidad"));
+
+                   // Agregar el producto a la lista
+                   productos.add(p);
+               }
+           }
+       } catch (SQLException ex) {
+           // Manejar la excepción de SQL y registrar el error
+           Logger.getLogger(producto_cbd.class.getName()).log(Level.SEVERE, "Error al buscar productos", ex);
+       }
+
+       // Devolver la lista de productos vendidos
+       return productos;
+   }
+
 
     
     /**

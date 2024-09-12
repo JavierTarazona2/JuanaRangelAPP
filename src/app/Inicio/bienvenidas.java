@@ -4,10 +4,11 @@
  */
 package app.Inicio;
 
+
 import app.bd_conexion.usuario_cbd;
 import app.datos.usuario;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+//import javax.swing.JTextField;
 
 
 /**
@@ -16,7 +17,8 @@ import javax.swing.JTextField;
  */
 public class bienvenidas extends javax.swing.JPanel {
     private final bienvenida bienv;
-    private usuario_cbd bd_usuario = new usuario_cbd();
+    private final usuario_cbd bd_usuario = new usuario_cbd();
+    
     /**
      * Creates new form bienvenidas
      * @param bienv
@@ -24,7 +26,6 @@ public class bienvenidas extends javax.swing.JPanel {
     public bienvenidas(bienvenida bienv) {
         this.bienv = bienv;
         initComponents();
-        
     }
 
     /**

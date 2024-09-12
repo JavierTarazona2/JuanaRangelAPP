@@ -164,7 +164,7 @@ public final class Incio extends javax.swing.JFrame {
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/negocios (1).png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/acceso.png"))); // NOI18N
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         balance1.setBackground(new java.awt.Color(182, 11, 11));

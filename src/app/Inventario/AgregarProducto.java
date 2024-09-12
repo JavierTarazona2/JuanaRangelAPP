@@ -5,17 +5,15 @@
 package app.Inventario;
 
 import app.Inicio.Incio;
-import app.Inventario.inventario;
 import app.bd_conexion.producto_cbd;
 import app.datos.categoria;
 import app.datos.producto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import java.sql.*;
 import java.time.format.DateTimeParseException;
 
-public class AgregarProducto extends javax.swing.JPanel {
+public final class AgregarProducto extends javax.swing.JPanel {
     private producto_cbd pcbb = new producto_cbd();
     private Incio inicio;
     public AgregarProducto(Incio inicio) {

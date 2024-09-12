@@ -607,12 +607,13 @@ public final class AgregarVenta extends javax.swing.JPanel {
        balance.setTipo("Ingreso");
        balance.setValor(venta.getValor());
        bcdb.registrarBalance(balance);
-       pdf pdf = new pdf();
-       pdf.CrearPdf(venta);
+      
        
 
        // Muestra la interfaz de ventas
        inicio.mostrar(new venta(inicio));
+        pdf pdf = new pdf();
+       pdf.CrearPdf(venta);
 
     }//GEN-LAST:event_jButton2ActionPerformed
      public void refrescarTablaProductos(ArrayList<producto> productoaa,ArrayList<Integer> cantidades){

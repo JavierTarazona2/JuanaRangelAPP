@@ -63,6 +63,7 @@ public final class inventario extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaProductos = new javax.swing.JTable();
+        jButton9 = new javax.swing.JButton();
         proveedor = new javax.swing.JPanel();
         txtproveedor = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
@@ -160,6 +161,22 @@ public final class inventario extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(listaProductos);
 
+        jButton9.setBackground(new java.awt.Color(182, 11, 11));
+        jButton9.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Reporte");
+        jButton9.setBorder(null);
+        jButton9.setBorderPainted(false);
+        jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton9.setMaximumSize(new java.awt.Dimension(100, 30));
+        jButton9.setMinimumSize(new java.awt.Dimension(100, 30));
+        jButton9.setPreferredSize(new java.awt.Dimension(100, 30));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout productoLayout = new javax.swing.GroupLayout(producto);
         producto.setLayout(productoLayout);
         productoLayout.setHorizontalGroup(
@@ -169,14 +186,16 @@ public final class inventario extends javax.swing.JPanel {
                 .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(productoLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(14, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(productoLayout.createSequentialGroup()
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                        .addGap(45, 45, 45))))
         );
         productoLayout.setVerticalGroup(
             productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +205,8 @@ public final class inventario extends javax.swing.JPanel {
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(53, Short.MAX_VALUE))
@@ -634,6 +654,11 @@ inicio.mostrar(new AgregarProducto(inicio));    }//GEN-LAST:event_jButton2Action
         JOptionPane.showMessageDialog(inicio, "Seleccione una fila en la tabla.");
     }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        Excel excel = new Excel();
+        excel.reporte(pcbd.ProductosVendidos());
+    }//GEN-LAST:event_jButton9ActionPerformed
      /**
      * Refresca la tabla de productos con una lista de productos.
      * @param productos Lista de productos a mostrar en la tabla.
@@ -738,6 +763,7 @@ inicio.mostrar(new AgregarProducto(inicio));    }//GEN-LAST:event_jButton2Action
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

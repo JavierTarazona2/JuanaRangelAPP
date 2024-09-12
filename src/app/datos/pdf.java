@@ -4,7 +4,8 @@
  */
 package app.datos;
 
-import app.datos.Ventas;
+
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -57,7 +58,7 @@ public class pdf {
 
     if (ventas instanceof pedido) {
         pedido venta = (pedido) ventas;
-         direccionpdf = ruta + File.separator + "Downloads" + File.separator + "JuanaRangelapp" + File.separator + "JuanaRangelapp" + File.separator + "src" + File.separator + "Facturas" + File.separator + "Pedidos" + File.separator + "factura-" + venta.getCodigo() + ".pdf";
+         direccionpdf = ruta + File.separator + "Downloads" + File.separator + "JuanaRangelapp" + File.separator + "JuanaRangelapp" + File.separator + "src" + File.separator + "Facturas" + File.separator + "Pedidos" + File.separator + "recibo-" + venta.getCodigo() + ".pdf";
 
         try {
             PdfWriter.getInstance(documento, new FileOutputStream(direccionpdf));
@@ -91,7 +92,7 @@ public class pdf {
 
     } else if (ventas instanceof Ventas) {
         Ventas venta = (Ventas) ventas;
-        direccionpdf = ruta + File.separator + "Downloads" + File.separator + "JuanaRangelapp" + File.separator + "JuanaRangelapp" + File.separator + "src" + File.separator + "Facturas" + File.separator + "Ventas" + File.separator + "factura-" + venta.getCodigo() + ".pdf";
+        direccionpdf = ruta + File.separator + "Downloads" + File.separator + "JuanaRangelapp" + File.separator + "JuanaRangelapp" + File.separator + "src" + File.separator + "Facturas" + File.separator + "Ventas" + File.separator + "recibo-" + venta.getCodigo() + ".pdf";
 
         try {
             PdfWriter.getInstance(documento, new FileOutputStream(direccionpdf));
@@ -144,7 +145,7 @@ public class pdf {
         tablaEncabezado.setWidths(new float[]{1, 3, 3});
 
         // Añadir logo
-        Image logo = Image.getInstance("C:\\Users\\javie\\OneDrive\\Documentos\\JuanaRangelapp\\JuanaRangelapp\\src\\imagenes\\GALLETAFONDOJAVIEE.png");
+        Image logo = Image.getInstance("C:\\Users\\javie\\Downloads\\JuanaRangelapp\\JuanaRangelapp\\src\\imagenes\\GALLETAFONDOJAVIEE.png");
         logo.scaleToFit(80, 80);
         PdfPCell celdaLogo = new PdfPCell(logo);
         celdaLogo.setBorder(Rectangle.NO_BORDER);
@@ -158,7 +159,7 @@ public class pdf {
         celdaNombre.setHorizontalAlignment(Element.ALIGN_LEFT);
         tablaEncabezado.addCell(celdaNombre);
 
-        PdfPCell celdaDetalles = new PdfPCell(new Phrase("29384751R\nCalle Llacuna, 132\nBarcelona (08022), España\ntomas.vinas@tuffers.com\n678644309", FontFactory.getFont(FontFactory.HELVETICA, 10)));
+        PdfPCell celdaDetalles = new PdfPCell(new Phrase("29384751R\nCalle ass, 132\n Cucuta (08022), Colombia\n panJuana.rangel@gmail.com\n+57 313 3578958", FontFactory.getFont(FontFactory.HELVETICA, 10)));
         celdaDetalles.setBorder(Rectangle.NO_BORDER);
         celdaDetalles.setHorizontalAlignment(Element.ALIGN_RIGHT);
         celdaDetalles.setVerticalAlignment(Element.ALIGN_TOP);
@@ -176,7 +177,7 @@ public class pdf {
         tablaInfo.setWidthPercentage(100);
         tablaInfo.setWidths(new float[]{2, 2});
 
-        PdfPCell celdaFactura = new PdfPCell(new Phrase("FACTURA #" + venta.getCodigo(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
+        PdfPCell celdaFactura = new PdfPCell(new Phrase("RECIBO #" + venta.getCodigo(), FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
         celdaFactura.setBorder(Rectangle.NO_BORDER);
         tablaInfo.addCell(celdaFactura);
 
@@ -445,5 +446,5 @@ public class pdf {
     }
     }
 
-    
+
 }
